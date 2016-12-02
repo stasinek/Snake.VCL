@@ -1,0 +1,212 @@
+[Closed Files]
+File_0=SourceModule,'D:\My Projects\aktualne prc++\OBSOLETE_BCB\Panel\Tips_frm.cpp',0,1,61,1,1,1,0
+File_1=SourceModule,'E:\GIT\basic\basic.h',0,1,271,40,282,0,0
+File_2=SourceModule,'E:\GIT\basic\basic.c',0,1,1,35,7,0,0
+File_3=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\hash\tsoft_hash_API.h',0,1,1,1,1,0,0
+File_4=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\compression\tsoft_compression_ari.h',0,1,1,1,1,0,0
+File_5=SourceModule,'c:\program files\borland\cbuilder6\include\winerror.h',0,1,6084,48,6100,0,0
+File_6=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\text\tsoft_cstr_class.h',0,1,16,18,20,0,0
+File_7=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\mem\tsoft_mem32.h',0,1,25,16,52,0,0
+File_8=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\cpu\tsoft_cpu.h',0,1,1,26,6,0,0
+File_9=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\database\tsoft_database.h',0,1,36,49,39,0,0
+
+[Modules]
+Module0=D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PROGS\Waz\Waz_form.cpp
+Module1=D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PROGS\TEACPS\Unit1.cpp
+Count=2
+EditWindowCount=1
+PackageWindowCount=1
+
+[D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PROGS\Waz\Waz_form.cpp]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PROGS\TEACPS\Unit1.cpp]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PACKAGES\USRPKG.bpk]
+FormState=0
+FormOnTop=1
+
+[C:\Program Files\Borland\CBuilder6\Projects\ProjectGroup1.bpg]
+FormState=0
+FormOnTop=0
+
+[D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PROGS\Waz\Waz.bpr]
+FormState=0
+FormOnTop=0
+
+[EditWindow0]
+ViewCount=2
+CurrentView=0
+View0=0
+View1=1
+MessageView=MessageView@EditWindow0
+Create=1
+Visible=1
+State=2
+Left=199
+Top=229
+Width=825
+Height=482
+MaxLeft=-4
+MaxTop=100
+MaxWidth=1032
+MaxHeight=644
+ClientWidth=1024
+ClientHeight=617
+LeftPanelSize=0
+RightPanelSize=0
+BottomPanelSize=85
+BottomPanelClients=MessageView@EditWindow0
+BottomPanelData=00000400000000000004000000000000025500000000000000010000000000000000000000000100000000000400000B0000004D65737361676556696577FFFFFFFF
+
+[View0]
+Module=D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PROGS\Waz\Waz_form.cpp
+CursorX=1
+CursorY=166
+TopLine=1
+LeftCol=1
+
+[View1]
+Module=D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PROGS\TEACPS\Unit1.cpp
+CursorX=57
+CursorY=19
+TopLine=1
+LeftCol=1
+
+[PackageWindow0]
+Create=1
+Visible=1
+State=0
+Left=252
+Top=241
+Width=368
+Height=244
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=360
+ClientHeight=220
+TBDockHeight=244
+LRDockWidth=368
+Dockable=1
+StatusBar=0
+TextLabels=1
+Toolbar=1
+SectionWidth0=150
+SectionWidth1=210
+Module=D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PACKAGES\USRPKG.bpk
+
+[Watches]
+Count=1
+Watch0='lpDestination',8,0,18,1,1,'Watches'
+
+[Breakpoints]
+Count=0
+
+[AddressBreakpoints]
+Count=0
+
+[Main Window]
+Create=1
+Visible=1
+State=2
+Left=9
+Top=15
+Width=1015
+Height=105
+MaxLeft=-1
+MaxTop=-1
+MaxWidth=1032
+MaxHeight=105
+ClientWidth=1024
+ClientHeight=78
+
+[ProjectManager]
+Create=1
+Visible=0
+State=0
+Left=369
+Top=372
+Width=438
+Height=303
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=430
+ClientHeight=279
+TBDockHeight=303
+LRDockWidth=438
+Dockable=1
+
+[AlignmentPalette]
+Create=1
+Visible=0
+State=0
+Left=200
+Top=107
+Width=156
+Height=82
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=150
+ClientHeight=60
+
+[PropertyInspector]
+Create=1
+Visible=0
+State=0
+Left=0
+Top=359
+Width=190
+Height=381
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=182
+ClientHeight=357
+TBDockHeight=381
+LRDockWidth=190
+Dockable=1
+SplitPos=85
+ArrangeBy=Name
+SelectedItem=
+ExpandedItems=
+HiddenCategories=
+
+[ObjectTree]
+Create=1
+Visible=0
+State=0
+Left=0
+Top=105
+Width=190
+Height=252
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=182
+ClientHeight=228
+TBDockHeight=252
+LRDockWidth=190
+Dockable=1
+
+[MessageView@EditWindow0]
+Create=1
+Visible=1
+State=0
+Left=12
+Top=0
+Width=1012
+Height=85
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=1012
+ClientHeight=85
+TBDockHeight=85
+LRDockWidth=443
+Dockable=1
+
+[DockHosts]
+DockHostCount=0
+
