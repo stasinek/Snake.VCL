@@ -3,17 +3,17 @@
 <PROJECT>
   <MACROS>
     <VERSION value="BCB.06.00"/>
-    <PROJECT value="Waz.exe"/>
-    <OBJFILES value="Waz.obj Waz_form.obj About_f.obj Opc.obj"/>
+    <PROJECT value="Snake.exe"/>
+    <OBJFILES value="Waz.obj Waz_form.obj Opc.obj ..\..\FORM_TEMPLATES\About_frm.obj"/>
     <RESFILES value="Waz.res"/>
     <IDLFILES value=""/>
     <DEFFILE value=""/>
-    <RESDEPEN value="$(RESFILES) Waz_form.dfm About_f.dfm Opc.dfm"/>
+    <RESDEPEN value="$(RESFILES) Waz_form.dfm Opc.dfm ..\..\FORM_TEMPLATES\About_frm.dfm"/>
     <LIBFILES value=""/>
-    <LIBRARIES value="USRPKG.lib vclx.lib bcbsmp.lib vcl.lib rtl.lib"/>
-    <SPARELIBS value="rtl.lib vcl.lib bcbsmp.lib vclx.lib USRPKG.lib"/>
-    <PACKAGES value="vclx.bpi rtl.bpi vcl.bpi dbrtl.bpi vcldb.bpi bdertl.bpi vcldbx.bpi"/>
-    <PATHCPP value=".;"/>
+    <LIBRARIES value="VCLX50.lib bcbsmp50.lib Vcl50.lib dclusr50.lib vclx.lib vcle.lib vcl.lib"/>
+    <SPARELIBS value="vcl.lib vcle.lib vclx.lib dclusr50.lib Vcl50.lib bcbsmp50.lib VCLX50.lib"/>
+    <PACKAGES value="db.bpi vcldb.bpi bde.bpi vcldbx.bpi"/>
+    <PATHCPP value=".;..\..\FORM_TEMPLATES"/>
     <PATHPAS value=".;"/>
     <PATHRC value=".;"/>
     <PATHASM value=".;"/>
@@ -23,40 +23,27 @@
     <USERDEFINES value="_DEBUG"/>
     <SYSDEFINES value="NO_STRICT"/>
     <MAINSOURCE value="Waz.cpp"/>
-    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl;&quot;D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PACKAGES&quot;"/>
-    <LIBPATH value="$(BCB)\lib\obj;$(BCB)\lib;&quot;D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PACKAGES&quot;"/>
+    <INCLUDEPATH value="..\..\FORM_TEMPLATES;..\..;..;$(BCB)\include;$(BCB)\include\vcl;..\..\PACKAGES"/>
+    <LIBPATH value="..\..\FORM_TEMPLATES;..\..;..;$(BCB)\lib\obj;$(BCB)\lib;..\..\PACKAGES"/>
     <WARNINGS value="-w-par -w-8027 -w-8026"/>
     <WARNOPTSTR value=""/>
-    <OTHERFILES value=""/>
   </MACROS>
   <OPTIONS>
-    <CFLAG1 value="-Od -H=c:\PROGRA~1\borland\CBUILD~1\lib\vcld.csm -Hc -Vx -Ve -fp -ff -X- 
-      -r- -a8 -6 -b- -k -y -v -vi- -c -tWM"/>
+    <CFLAG1 value="-O2 -H=c:\PROGRA~1\borland\CBUILD~1\lib\vcld.csm -Hc -Vx -Ve -xf -xp -fp 
+      -ff -X- -a8 -6 -b- -k -y -v -vi- -c -tWM"/>
     <CFLAG2 value=""/>
     <CFLAG3 value=""/>
-    <PFLAGS value="-$YD -$W -$U -$I- -$A8 -v -JPHNV -M -JPHNE"/>
+    <PFLAGS value="-$YD -$W -$U -$R -$Q -$A8 -v -JPHNV -M -JPHNE"/>
     <RFLAGS value=""/>
     <AFLAGS value="/mx /w0 /zd"/>
-    <LFLAGS value="-D&quot;&quot; -aa -Tpe -GD -s -M -v"/>
+    <LFLAGS value="-D&quot;&quot; -Rr -Gz -c- -aa -Tpe -GD -s -M -v"/>
     <IFLAGS value=""/>
-    <OTHERFILES value=""/>
   </OPTIONS>
   <LINKER>
     <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
     <ALLRES value="$(RESFILES)"/>
     <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
-    <OTHERFILES value=""/>
   </LINKER>
-  <FILELIST>
-      <FILE FILENAME="Waz.cpp" FORMNAME="" UNITNAME="Waz" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
-      <FILE FILENAME="Waz.res" FORMNAME="" UNITNAME="Waz" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
-      <FILE FILENAME="Waz_form.cpp" FORMNAME="MainForm" UNITNAME="Waz_form" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
-      <FILE FILENAME="About_f.cpp" FORMNAME="AboutBox" UNITNAME="About_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
-      <FILE FILENAME="Opc.cpp" FORMNAME="OpcjeForm" UNITNAME="Opc" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
-  </FILELIST>
-  <BUILDTOOLS>
-  </BUILDTOOLS>
-
   <IDEOPTIONS>
 [Version Info]
 IncludeVerInfo=1
@@ -66,7 +53,7 @@ MinorVer=0
 Release=3
 Build=11
 Debug=0
-PreRelease=0
+PreRelease=1
 Special=0
 Private=0
 DLL=0
@@ -74,31 +61,44 @@ Locale=1045
 CodePage=1250
 
 [Version Info Keys]
-CompanyName=
+CompanyName=SSTSOFT
 FileDescription=
 FileVersion=1.0.3.11
-InternalName=
-LegalCopyright=
+InternalName=Snake.VCL
+LegalCopyright=Stanislaw Stasiak
 LegalTrademarks=
-OriginalFilename=
-ProductName=
+OriginalFilename=Snake.VCL.exe
+ProductName=Snake
 ProductVersion=1.0.0.0
 
+[Excluded Packages]
+$(BCB)\Bin\dcl31w50.bpl=Delphi 1.0 Compatibility Components
+$(BCB)\Bin\dclocx50.bpl=Borland Sample Imported ActiveX Controls
+$(BCB)\Bin\bcb2kaxserver50.bpl=Borland C++Builder COM Server Components Sample Package
+
 [HistoryLists\hlIncludePath]
-Count=5
-Item0=$(BCB)\include;$(BCB)\include\vcl;D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PACKAGES
-Item1=$(BCB)\include;$(BCB)\include\vcl;C:\Moje dokumenty\PRC\BCB3\Packages
-Item2=$(BCB)\include;$(BCB)\include\vcl;..\..\Packages
-Item3=$(BCB)\include;$(BCB)\include\vcl
-Item4=..\autosrv;$(BCB)\include;$(BCB)\include\vcl
+Count=9
+Item0=..\..\FORM_TEMPLATES;..\..;..\;$(BCB)\include;$(BCB)\include\vcl;..\..\PACKAGES
+Item1=$(BCB)\include;$(BCB)\include\vcl;..\..\PACKAGES
+Item2=$(BCB)\include;$(BCB)\include\vcl;.\..\..\PACKAGES
+Item3=$(BCB)\include;$(BCB)\include\vcl;\..\..\PACKAGES
+Item4=$(BCB)\include;$(BCB)\include\vcl;\..\..\OBSOLETE_BCB\PACKAGES
+Item5=$(BCB)\include;$(BCB)\include\vcl;D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PACKAGES
+Item6=$(BCB)\include;$(BCB)\include\vcl;C:\Moje dokumenty\PRC\BCB3\Packages
+Item7=$(BCB)\include;$(BCB)\include\vcl
+Item8=..\autosrv;$(BCB)\include;$(BCB)\include\vcl
 
 [HistoryLists\hlLibraryPath]
-Count=5
-Item0=$(BCB)\lib\obj;$(BCB)\lib;D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PACKAGES
-Item1=$(BCB)\lib\obj;$(BCB)\lib;C:\Moje dokumenty\PRC\BCB3\Packages
-Item2=$(BCB)\lib\obj;$(BCB)\lib;..\..\Packages
-Item3=$(BCB)\lib\obj;$(BCB)\lib
-Item4=..\autosrv;$(BCB)\lib\obj;$(BCB)\lib
+Count=9
+Item0=..\..\FORM_TEMPLATES;..\..;..\;$(BCB)\lib\obj;$(BCB)\lib;..\..\PACKAGES
+Item1=$(BCB)\lib\obj;$(BCB)\lib;..\..\PACKAGES
+Item2=$(BCB)\lib\obj;$(BCB)\lib;.\..\..\PACKAGES
+Item3=$(BCB)\lib\obj;$(BCB)\lib;\..\..\PACKAGES
+Item4=$(BCB)\lib\obj;$(BCB)\lib;\..\..\OBSOLETE_BCB\PACKAGES
+Item5=$(BCB)\lib\obj;$(BCB)\lib;D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PACKAGES
+Item6=$(BCB)\lib\obj;$(BCB)\lib;C:\Moje dokumenty\PRC\BCB3\Packages
+Item7=$(BCB)\lib\obj;$(BCB)\lib
+Item8=..\autosrv;$(BCB)\lib\obj;$(BCB)\lib
 
 [HistoryLists\hlConditionals]
 Count=2
@@ -110,18 +110,13 @@ DebugSourceDirs=
 
 [Parameters]
 RunParams=
-Launcher=
-UseLauncher=0
-DebugCWD=
 HostApplication=
 RemoteHost=
 RemotePath=
-RemoteLauncher=
-RemoteCWD=
 RemoteDebug=0
 
 [Compiler]
 ShowInfoMsgs=0
-LinkDebugVcl=0
+LinkDebugVcl=1
   </IDEOPTIONS>
 </PROJECT>

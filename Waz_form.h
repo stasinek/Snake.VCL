@@ -33,7 +33,6 @@ __published:	// IDE-managed Componentsvoid
     TMenuItem *N21;
     TMenuItem *N11;
     TMenuItem *About;
-    void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormKeyDown(TObject *Sender, WORD &key,TShiftState Shift);
     void __fastcall FormDestroy(TObject *Sender);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -57,11 +56,13 @@ __published:	// IDE-managed Componentsvoid
     void __fastcall StopClick(TObject *Sender);
     void __fastcall AboutClick(TObject *Sender);
     void __fastcall ZamknijClick(TObject *Sender);
+	void __fastcall FormShow(TObject *Sender);
     private:	// User declarations
     void __fastcall Zbieraj(void);
-    void __fastcall Load(void);
+    void __fastcall Load(AnsiString a_plik_name);
     void __fastcall Ruch(void);
     void __fastcall GrajFunk(void);
+    void __fastcall Sound(AnsiString a_plik_name);
     bool gram,pauza,stop;
 public:		// User declarations
 HINSTANCE hInst;

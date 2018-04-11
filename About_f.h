@@ -19,11 +19,12 @@ __published:
 	TPanel *Panel1;
 	TImage *ProgramIcon;
 	TLabel *ProductName;
-	TLabel *Version;
 	TLabel *Copyright;
 	TButton *OKButton;
     TLabel *Label1;
     TLabel *Label2;
+	TImage *Image1;
+        TMemo *Memo1;
 private:
 public:
 	virtual __fastcall TAboutBox(TComponent* AOwner);

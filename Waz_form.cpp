@@ -1,60 +1,69 @@
 //---------------------------------------------------------------------------
 #include <vcl.h>
 #pragma hdrstop
+//---------------------------------------------------------------------------
 #include "Waz_form.h"
 #include "Opc.h"
-#include "About_f.h"
-#include <fstream.h>
-#include <mmsystem.h>
+#include "../../FORM_TEMPLATES/About_frm.h"
 //---------------------------------------------------------------------------
+#include <mmsystem.h>
+#include <fstream.h>
 #pragma package(smart_init)
 #pragma resource "*.dfm"
+//---------------------------------------------------------------------------
+enum {
+BM_ZBIER  = 0,
+BM_BONUS  = 1,
+BM_CLOCK  = 2,
+BM_CANVAS = 3,
+BM_MAPA   = 4,
+BM_NIC    = 5,
+BM_KROPA  = 6,
+BM_GLOWA  = 7
+};
 
-#define bmKANVAS 0
-#define bmMAPA   1
-#define bmNIC    2
-#define bmKROPA  3
-#define bmGLOWA  4
-#define bmZBIER  5
-#define bmBONUS  6
-#define bmCLOCK  7
+enum {
+ZB_ZBIER = 0,
+ZB_BONUS = 1,
+ZB_CLOCK = 2
+};
+//---------------------------------------------------------------------------
+TMainForm *MainForm;
+ //---------------------------------------------------------------------------
+struct { AnsiString Name;
+} plik[13];
+
+struct { AnsiString Name;
+long Index;
+} plik_current;
+
+struct TSearchRec plik_search;
+int plik_search_ret;
 
 Graphics::TBitmap* bitmap[8];
-
-bool sndEx = FileExists("pauza.wav") && FileExists("zbier.wav") && FileExists("clock.wav") && FileExists("bonus.wav") && FileExists("stop.wav");
-AnsiString plikName;
-long plikIndex = 0;
+bool sound_exists = FileExists("pauza.wav") && FileExists("zbier.wav") && FileExists("clock.wav") && FileExists("bonus.wav") && FileExists("stop.wav");
 
 long im = 0;
 char ruch[2][1024*64];
 long punktow = 0;
+long czas = 0, czas_old = 0;
 
-long czas = 0, czasOld = 0;
-
-#define ZBIER 0
-#define BONUS 1
-#define CLOCK 2
-
-struct __gra
-{
+struct {
  char mapka[80][80];
- long wazCnt;
+ long waz_cnt;
  char extra[3][2][80];
- long extraCnt[3];
+ long extra_cnt[3];
 POINT pos, mov, cnt;
 float reftime, igntime, ref_mul, ign_mul;
-
 } level, gra;
+//---------------------------------------------------------------------------
 
- //---------------------------------------------------------------------------
-TMainForm *MainForm;
- //---------------------------------------------------------------------------
-__fastcall TMainForm::TMainForm(TComponent* Owner)
+ __fastcall TMainForm::TMainForm(TComponent* Owner)
     : TForm(Owner),gram(false),stop(false),pauza(false)
 {
     hInst = (HINSTANCE)HInstance;
 for (int i = 0; i < 8; i++)
-     bitmap[i] = new Graphics::TBitmap;
+    bitmap[i] = new Graphics::TBitmap;
 }
 //---------------------------------------------------------------------------
 
@@ -68,7 +77,7 @@ switch (key)
          StopClick(this);
     break;
     case 71:
-         if (plikIndex==0 || Start->Enabled==false)
+         if (plik_current.Index==0 || Start->Enabled==false)
              return;
          GrajFunk();
     break;
@@ -102,7 +111,7 @@ switch (key)
          if (gra.mov.x>0)
              return;
          if (gra.mov.x<0)
-            {czasOld -= gra.reftime/2;
+            {czas_old -= gra.reftime/2;
              return;
             }
          gra.mov.x = -1;
@@ -117,7 +126,7 @@ switch (key)
          if (gra.mov.x<0)
              return;
          if (gra.mov.x>0)
-            {czasOld -= gra.reftime/2;
+            {czas_old -= gra.reftime/2;
              return;
             }
          gra.mov.x = +1;
@@ -132,7 +141,7 @@ switch (key)
          if (gra.mov.y<0)
              return;
          if (gra.mov.y>0)
-            {czasOld -= gra.reftime/2;
+            {czas_old -= gra.reftime/2;
              return;
             }
          gra.mov.x = 0;
@@ -147,7 +156,7 @@ switch (key)
          if (gra.mov.y>0)
              return;
          if (gra.mov.y<0)
-            {czasOld -= gra.reftime/2;
+            {czas_old -= gra.reftime/2;
              return;
             }
          gra.mov.x = 0;
@@ -157,214 +166,129 @@ switch (key)
 gram = false;
 }
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::FormCreate(TObject *Sender)
+
+void __fastcall TMainForm::Sound(AnsiString a_plik_name)
 {
- gram = false;
-pauza = false;
- stop = true;
-
-bitmap[bmKANVAS]->Height = 1024;
- bitmap[bmKANVAS]->Width = 1024;
-bitmap[bmKANVAS]->LoadFromResourceName((int)hInst,"LOGO");
-
- bitmap[bmKROPA]->LoadFromFile("kropa.bmp");
- bitmap[bmGLOWA]->LoadFromFile("glowa.bmp");
-   bitmap[bmNIC]->LoadFromFile("nic.bmp");
- bitmap[bmZBIER]->LoadFromFile("zbier.bmp");
- bitmap[bmBONUS]->LoadFromFile("bonus.bmp");
- bitmap[bmCLOCK]->LoadFromFile("clock.bmp");
-  bitmap[bmMAPA]->LoadFromFile("mapa.bmp");
-
-setmem(&level,sizeof(level),0x00);
-
-int searchRet;
-struct TSearchRec pliki;
-for (searchRet = FindFirst("*.lev",faAnyFile,pliki), plikIndex = 0; !searchRet && plikIndex < 12; searchRet = FindNext(pliki))
-    {
-     switch (++plikIndex)
-    {
-    case 1:
-          N11->Visible = true;
-          N11->Enabled = true;
-          N11->Caption = pliki.Name;
-    break;
-    case 2:
-          N21->Visible = true;
-          N21->Enabled = true;
-          N21->Caption = pliki.Name;
-    break;
-    case 3:
-          N31->Visible = true;
-          N31->Enabled = true;
-          N31->Caption = pliki.Name;
-    break;
-    case 4:
-          N41->Visible = true;
-          N41->Enabled = true;
-          N41->Caption = pliki.Name;
-    break;
-    case 5:
-          N51->Visible = true;
-          N51->Enabled = true;
-          N51->Caption = pliki.Name;
-    break;
-    case 6:
-          N61->Visible = true;
-          N61->Enabled = true;
-          N61->Caption = pliki.Name;
-    break;
-    case 7:
-          N71->Visible = true;
-          N71->Enabled = true;
-          N71->Caption = pliki.Name;
-    break;
-    case 8:
-          N81->Visible = true;
-          N81->Enabled = true;
-          N81->Caption = pliki.Name;
-    break;
-    case 9:
-          N91->Visible = true;
-          N91->Enabled = true;
-          N91->Caption = pliki.Name;
-    break;
-    case 10:
-         N101->Visible = true;
-         N101->Enabled = true;
-         N101->Caption = pliki.Name;
-    break;
-    case 11:
-         N111->Visible = true;
-         N111->Enabled = true;
-         N111->Caption = pliki.Name;
-    break;
-    case 12:
-         N121->Visible = true;
-         N121->Enabled = true;
-         N121->Caption = pliki.Name;
-    break;
-   }
-    }
-MainForm->Repaint();
-MainForm->Show();
+sndPlaySoundA(a_plik_name.c_str(), SND_ASYNC | SND_FILENAME);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMainForm::Load(void)
+void __fastcall TMainForm::Load(AnsiString a_plik_name)
 {
-bitmap[bmKANVAS]->Height = 1024;
- bitmap[bmKANVAS]->Width = 1024;
+bitmap[BM_CANVAS]->Height = 1024;
+bitmap[BM_CANVAS]->Width = 1024;
 
 setmem(&gra,sizeof(gra),0x00);
 
- TRect tempRect = Rect(0,0,bitmap[bmKANVAS]->Width, bitmap[bmKANVAS]->Height);
-bitmap[bmKANVAS]->Canvas->Brush->Color = clBlack;
-bitmap[bmKANVAS]->Canvas->FillRect(tempRect);
-MainForm->Caption = "Level : " + plikName;
-if (!FileExists(plikName.c_str()))
-   {ShowMessage("Nie ma pliku konfiguracji");
+ TRect tempRect = Rect(0,0,bitmap[BM_CANVAS]->Width, bitmap[BM_CANVAS]->Height);
+bitmap[BM_CANVAS]->Canvas->Brush->Color = clBlack;
+bitmap[BM_CANVAS]->Canvas->FillRect(tempRect);
+MainForm->Caption = "Level : " + a_plik_name;
+if (!FileExists(GetCurrentDir() + "\\" + a_plik_name))
+   {ShowMessage("Nie ma pliku konfiguracji: " + a_plik_name);
     return;
    }
-char lineBuf[256] = "";
-ifstream plikHnd;
-plikHnd.open(plikName.c_str());
-for (level.cnt.y = 0; !plikHnd.eof(); level.cnt.y++) // konfig parametry
+char line_buf[256] = "";
+ifstream plik_hnd;
+plik_hnd.open(a_plik_name.c_str());
+for (level.cnt.y = 0; !plik_hnd.eof(); level.cnt.y++) // konfig parametry
     {
-     if (!plikHnd.getline(lineBuf,sizeof(lineBuf)))
+     if (!plik_hnd.getline(line_buf,sizeof(line_buf)))
          break;
-     if (strstr(lineBuf,"end!")!=NULL)
+     if (strstr(line_buf,"end!")!=NULL)
         {break;
         }
-     if (strstr(lineBuf,"pos.x")!=NULL)
-        {strtok(lineBuf,"=");
+     if (strstr(line_buf,"pos.x")!=NULL)
+        {strtok(line_buf,"=");
             level.pos.x = strtol(strtok(NULL,""),NULL,10);
          continue;
         }
-     if (strstr(lineBuf,"pos.y")!=NULL)
-        {strtok(lineBuf,"=");
+     if (strstr(line_buf,"pos.y")!=NULL)
+        {strtok(line_buf,"=");
             level.pos.y = strtol(strtok(NULL,""),NULL,10);
          continue;
         }
-     if (strstr(lineBuf,"mov.x")!=NULL)
-        {strtok(lineBuf,"=");
+     if (strstr(line_buf,"mov.x")!=NULL)
+        {strtok(line_buf,"=");
             level.mov.x = strtol(strtok(NULL,""),NULL,10);
          continue;
         }
-     if (strstr(lineBuf,"mov.y")!=NULL)
-        {strtok(lineBuf,"=");
+     if (strstr(line_buf,"mov.y")!=NULL)
+        {strtok(line_buf,"=");
             level.mov.y = strtol(strtok(NULL,""),NULL,10);
          continue;
         }
-     if (strstr(lineBuf,"dlugosc")!=NULL)
-        {strtok(lineBuf,"=");
-      level.wazCnt = strtol(strtok(NULL,""),NULL,10);
+     if (strstr(line_buf,"dlugosc")!=NULL)
+        {strtok(line_buf,"=");
+      level.waz_cnt = strtol(strtok(NULL,""),NULL,10);
          continue;
         }
-     if (strstr(lineBuf,"zbierek")!=NULL)
-        {strtok(lineBuf,"=");
-      level.extraCnt[ZBIER] = strtol(strtok(NULL,""),NULL,10);
+     if (strstr(line_buf,"zbierek")!=NULL)
+        {strtok(line_buf,"=");
+      level.extra_cnt[ZB_ZBIER] = strtol(strtok(NULL,""),NULL,10);
          continue;
         }
-     if (strstr(lineBuf,"bonusow")!=NULL)
-        {strtok(lineBuf,"=");
-      level.extraCnt[BONUS] = strtol(strtok(NULL,""),NULL,10);
+     if (strstr(line_buf,"bonusow")!=NULL)
+        {strtok(line_buf,"=");
+      level.extra_cnt[ZB_BONUS] = strtol(strtok(NULL,""),NULL,10);
          continue;
         }
-     if (strstr(lineBuf,"clockow")!=NULL)
-        {strtok(lineBuf,"=");
-      level.extraCnt[CLOCK] = strtol(strtok(NULL,""),NULL,10);
+     if (strstr(line_buf,"clockow")!=NULL)
+        {strtok(line_buf,"=");
+      level.extra_cnt[ZB_CLOCK] = strtol(strtok(NULL,""),NULL,10);
          continue;
         }
-     if (strstr(lineBuf,"reftime")!=NULL)
-        {strtok(lineBuf,"=");
+     if (strstr(line_buf,"reftime")!=NULL)
+        {strtok(line_buf,"=");
          level.reftime = strtol(strtok(NULL,""),NULL,10);
          continue;
         }
-     if (strstr(lineBuf,"ref_mul")!=NULL)
-        {strtok(lineBuf,"=");
+     if (strstr(line_buf,"ref_mul")!=NULL)
+        {strtok(line_buf,"=");
          level.ref_mul = strtod(strtok(NULL,""),NULL);
          continue;
         }
-     if (strstr(lineBuf,"igntime")!=NULL)
-        {strtok(lineBuf,"=");
+     if (strstr(line_buf,"igntime")!=NULL)
+        {strtok(line_buf,"=");
          level.igntime = strtol(strtok(NULL,""),NULL,10);
          continue;
         }
-     if (strstr(lineBuf,"ign_mul")!=NULL)
-        {strtok(lineBuf,"=");
+     if (strstr(line_buf,"ign_mul")!=NULL)
+        {strtok(line_buf,"=");
          level.ign_mul = strtod(strtok(NULL,""),NULL);
          continue;
         }
     }
- if (plikHnd.eof())
+ if (plik_hnd.eof())
     {ShowMessage("Plik konfiguracji jest nieprawid³owy!");
      return;
     }
-for (level.cnt.y = 0, level.cnt.x = 0; !plikHnd.eof(); level.cnt.y++)
+for (level.cnt.y = 0, level.cnt.x = 0; !plik_hnd.eof(); level.cnt.y++)
     {
-      if (!plikHnd.getline(lineBuf,sizeof(lineBuf)))
+      if (!plik_hnd.getline(line_buf,sizeof(line_buf)))
           break;
-     for (int t = 0, tmax = strlen(lineBuf); t < tmax; t++)
+     for (int t = 0, tmax = strlen(line_buf); t < tmax; t++)
          {
-          if ((int)lineBuf[t]=='0')
-          bitmap[bmKANVAS]->Canvas->Draw(t*bitmap[bmNIC]->Height,level.cnt.y*bitmap[bmNIC]->Height,bitmap[bmNIC]);
+          if ((int)line_buf[t]=='0')
+          bitmap[BM_CANVAS]->Canvas->Draw(t*bitmap[BM_NIC]->Height,level.cnt.y*bitmap[BM_NIC]->Height,bitmap[BM_NIC]);
           else
-          if ((int)lineBuf[t]=='1')
-          bitmap[bmKANVAS]->Canvas->Draw(t*bitmap[bmNIC]->Height,level.cnt.y*bitmap[bmNIC]->Height,bitmap[bmMAPA]);
+          if ((int)line_buf[t]=='1')
+          bitmap[BM_CANVAS]->Canvas->Draw(t*bitmap[BM_NIC]->Height,level.cnt.y*bitmap[BM_NIC]->Height,bitmap[BM_MAPA]);
 
-          level.mapka[t][level.cnt.y] = lineBuf[t];
+          level.mapka[t][level.cnt.y] = line_buf[t];
          }
-      if (level.cnt.x < strlen(lineBuf))
-          level.cnt.x = strlen(lineBuf);
+      if (level.cnt.x < (int)strlen(line_buf))
+          level.cnt.x = strlen(line_buf);
     }
-plikHnd.close();
+plik_hnd.close();
+plik_current.Name = a_plik_name;
 
-  bitmap[bmKANVAS]->Width = bitmap[bmNIC]->Height * level.cnt.x;
-MainForm->Left =  (Screen->Width - bitmap[bmKANVAS]->Width)/2;
-MainForm->ClientWidth = bitmap[bmKANVAS]->Width;
- bitmap[bmKANVAS]->Height = bitmap[bmNIC]->Height * level.cnt.y;
- MainForm->Top = (Screen->Height - bitmap[bmKANVAS]->Height)/2;
-MainForm->ClientHeight = bitmap[bmKANVAS]->Height;
+  bitmap[BM_CANVAS]->Width = bitmap[BM_NIC]->Height * level.cnt.x;
+MainForm->Left =  (Screen->Width - bitmap[BM_CANVAS]->Width)/2;
+MainForm->ClientWidth = bitmap[BM_CANVAS]->Width;
+ bitmap[BM_CANVAS]->Height = bitmap[BM_NIC]->Height * level.cnt.y;
+ MainForm->Top = (Screen->Height - bitmap[BM_CANVAS]->Height)/2;
+MainForm->ClientHeight = bitmap[BM_CANVAS]->Height;
 
 pauza = false;
  stop = true;
@@ -400,40 +324,40 @@ ruch[0][im] = gra.pos.x;
 ruch[1][im] = gra.pos.y;
 
 randomize();
-for (int nr = 0; nr < gra.extraCnt[ZBIER]; nr++)
+for (int nr = 0; nr < gra.extra_cnt[ZB_ZBIER]; nr++)
     {
      do {
-         gra.extra[ZBIER][0][nr] = int(rand() % gra.cnt.x);
-         gra.extra[ZBIER][1][nr] = int(rand() % gra.cnt.y);
+         gra.extra[ZB_ZBIER][0][nr] = int(rand() % gra.cnt.x);
+         gra.extra[ZB_ZBIER][1][nr] = int(rand() % gra.cnt.y);
 
-        } while ((int)gra.mapka[gra.extra[ZBIER][0][nr]][gra.extra[ZBIER][1][nr]]!='0');
+        } while ((int)gra.mapka[gra.extra[ZB_ZBIER][0][nr]][gra.extra[ZB_ZBIER][1][nr]]!='0');
 
-     gra.mapka[gra.extra[ZBIER][0][nr]][gra.extra[ZBIER][1][nr]]='2';
+     gra.mapka[gra.extra[ZB_ZBIER][0][nr]][gra.extra[ZB_ZBIER][1][nr]]='2';
     }
-for (int nr = 0; nr < gra.extraCnt[BONUS]; nr++)
+for (int nr = 0; nr < gra.extra_cnt[ZB_BONUS]; nr++)
     {
      do {
-         gra.extra[BONUS][0][nr] = int(rand() % gra.cnt.x);
-         gra.extra[BONUS][1][nr] = int(rand() % gra.cnt.y);
+         gra.extra[ZB_BONUS][0][nr] = int(rand() % gra.cnt.x);
+         gra.extra[ZB_BONUS][1][nr] = int(rand() % gra.cnt.y);
 
-        } while ((int)gra.mapka[gra.extra[BONUS][0][nr]][gra.extra[BONUS][1][nr]]!='0');
+        } while ((int)gra.mapka[gra.extra[ZB_BONUS][0][nr]][gra.extra[ZB_BONUS][1][nr]]!='0');
 
-     gra.mapka[gra.extra[BONUS][0][nr]][gra.extra[BONUS][1][nr]]='3';
+     gra.mapka[gra.extra[ZB_BONUS][0][nr]][gra.extra[ZB_BONUS][1][nr]]='3';
     }
-for (int nr = 0; nr < gra.extraCnt[CLOCK]; nr++)
+for (int nr = 0; nr < gra.extra_cnt[ZB_CLOCK]; nr++)
     {
      do {
-         gra.extra[CLOCK][0][nr] = int(rand() % gra.cnt.x);
-         gra.extra[CLOCK][1][nr] = int(rand() % gra.cnt.y);
+         gra.extra[ZB_CLOCK][0][nr] = int(rand() % gra.cnt.x);
+         gra.extra[ZB_CLOCK][1][nr] = int(rand() % gra.cnt.y);
 
-        } while ((int)gra.mapka[gra.extra[CLOCK][0][nr]][gra.extra[CLOCK][1][nr]]!='0');
+        } while ((int)gra.mapka[gra.extra[ZB_CLOCK][0][nr]][gra.extra[ZB_CLOCK][1][nr]]!='0');
 
-     gra.mapka[gra.extra[CLOCK][0][nr]][gra.extra[CLOCK][1][nr]]='4';
+     gra.mapka[gra.extra[ZB_CLOCK][0][nr]][gra.extra[ZB_CLOCK][1][nr]]='4';
     }
 Repaint();
 
 punktow = 0;
-MainForm->Caption = "Grasz : 0 punktów w level \""+plikName+"\"";
+MainForm->Caption = "Grasz : 0 punktów w level \""+plik_current.Name+"\"";
 Ruch();
 StopClick(this);
 }
@@ -447,7 +371,7 @@ do {
          czas = timeGetTime();
          Application->ProcessMessages();
        } while (pauza==true);
-    if (czas-czasOld < gra.reftime)
+    if (czas-czas_old < gra.reftime)
         continue;
     gram = true;
 
@@ -471,8 +395,8 @@ do {
 
     Zbieraj();
 
-    if (im>=gra.wazCnt)
-       {gra.mapka[ruch[0][im-gra.wazCnt]][ruch[1][im-gra.wazCnt]]='0';
+    if (im>=gra.waz_cnt)
+       {gra.mapka[ruch[0][im-gra.waz_cnt]][ruch[1][im-gra.waz_cnt]]='0';
        }
     if (gra.mapka[ruch[0][im]][ruch[1][im]]=='1')
        {gram = false;
@@ -482,33 +406,33 @@ do {
        }
     else gra.mapka[ruch[0][im]][ruch[1][im]]='1';
 
-    if (im>0 && gra.wazCnt>1)
-       {MainForm->Canvas->Draw(ruch[0][im-1]*bitmap[bmNIC]->Height,ruch[1][im-1]*bitmap[bmNIC]->Height,bitmap[bmKROPA]);
+    if (im>0 && gra.waz_cnt>1)
+       {MainForm->Canvas->Draw(ruch[0][im-1]*bitmap[BM_NIC]->Height,ruch[1][im-1]*bitmap[BM_NIC]->Height,bitmap[BM_KROPA]);
        }
-    if (im>=gra.wazCnt)
-       {MainForm->Canvas->Draw(ruch[0][im-gra.wazCnt]*bitmap[bmNIC]->Height,ruch[1][im-gra.wazCnt]*bitmap[bmNIC]->Height,bitmap[bmNIC]);
+    if (im>=gra.waz_cnt)
+       {MainForm->Canvas->Draw(ruch[0][im-gra.waz_cnt]*bitmap[BM_NIC]->Height,ruch[1][im-gra.waz_cnt]*bitmap[BM_NIC]->Height,bitmap[BM_NIC]);
        }
 
-    MainForm->Canvas->Draw(ruch[0][im]*bitmap[bmNIC]->Height,ruch[1][im]*bitmap[bmNIC]->Height,bitmap[bmGLOWA]);
+    MainForm->Canvas->Draw(ruch[0][im]*bitmap[BM_NIC]->Height,ruch[1][im]*bitmap[BM_NIC]->Height,bitmap[BM_GLOWA]);
 
     if (gra.reftime > gra.ref_mul)
     gra.reftime = gra.reftime*(1 - gra.ref_mul);
     if (gra.igntime > gra.ign_mul)
     gra.igntime = gra.igntime*(1 - gra.ign_mul);
 
-    czasOld = timeGetTime();
+    czas_old = timeGetTime();
 
     if (gra.mov.x>0 ? gra.mapka[(int)ruch[0][im]+1][(int)ruch[1][im]+0]=='1' : false)
-        czasOld+=gra.igntime;
+        czas_old+=gra.igntime;
     else
     if (gra.mov.x<0 ? gra.mapka[(int)ruch[0][im]-1][(int)ruch[1][im]+0]=='1' : false)
-        czasOld+=gra.igntime;
+        czas_old+=gra.igntime;
     else
     if (gra.mov.y>0 ? gra.mapka[(int)ruch[0][im]+0][(int)ruch[1][im]+1]=='1' : false)
-        czasOld+=gra.igntime;
+        czas_old+=gra.igntime;
     else
     if (gra.mov.y<0 ? gra.mapka[(int)ruch[0][im]+0][(int)ruch[1][im]-1]=='1' : false)
-        czasOld+=gra.igntime;
+        czas_old+=gra.igntime;
 
    } while (stop==false);
 }
@@ -520,9 +444,9 @@ if (gram==false)
     return;
 
 randomize();
-for (int nr = 0; nr < gra.extraCnt[ZBIER]; nr++)
+for (int nr = 0; nr < gra.extra_cnt[ZB_ZBIER]; nr++)
     {
-     if ((int)ruch[0][im]!=(int)gra.extra[ZBIER][0][nr] || (int)ruch[1][im]!=(int)gra.extra[ZBIER][1][nr])
+     if ((int)ruch[0][im]!=(int)gra.extra[ZB_ZBIER][0][nr] || (int)ruch[1][im]!=(int)gra.extra[ZB_ZBIER][1][nr])
          continue;
 
      if (gra.reftime < level.reftime)
@@ -530,26 +454,26 @@ for (int nr = 0; nr < gra.extraCnt[ZBIER]; nr++)
      if (gra.igntime < level.igntime)
      gra.igntime = gra.igntime*(1 + gra.cnt.x*gra.ign_mul);
 
-     gra.wazCnt++;
-     punktow += int(100*level.reftime/gra.reftime);
-     if (sndEx)
-         sndPlaySound("zbier.wav", SND_ASYNC | SND_FILENAME);
+     gra.waz_cnt++;
+     punktow += int((100 * level.reftime) / gra.reftime);
+     if (sound_exists)
+         Sound("zbier.wav");
 
-     MainForm->Canvas->Draw(gra.extra[ZBIER][0][nr]*bitmap[bmNIC]->Height,gra.extra[ZBIER][1][nr]*bitmap[bmNIC]->Height,bitmap[bmNIC]);
+     MainForm->Canvas->Draw(gra.extra[ZB_ZBIER][0][nr]*bitmap[BM_NIC]->Height,gra.extra[ZB_ZBIER][1][nr]*bitmap[BM_NIC]->Height,bitmap[BM_NIC]);
      do {
-         gra.extra[ZBIER][0][nr] = int(rand() % gra.cnt.x);
-         gra.extra[ZBIER][1][nr] = int(rand() % gra.cnt.y);
+         gra.extra[ZB_ZBIER][0][nr] = int(rand() % gra.cnt.x);
+         gra.extra[ZB_ZBIER][1][nr] = int(rand() % gra.cnt.y);
 
-        } while ((int)gra.mapka[gra.extra[ZBIER][0][nr]][gra.extra[ZBIER][1][nr]]!='0');
+        } while ((int)gra.mapka[gra.extra[ZB_ZBIER][0][nr]][gra.extra[ZB_ZBIER][1][nr]]!='0');
 
-      gra.mapka[gra.extra[ZBIER][0][nr]][gra.extra[ZBIER][1][nr]] = '2';
-     MainForm->Canvas->Draw(gra.extra[ZBIER][0][nr]*bitmap[bmNIC]->Height,gra.extra[ZBIER][1][nr]*bitmap[bmNIC]->Height,bitmap[bmZBIER]);
+      gra.mapka[gra.extra[ZB_ZBIER][0][nr]][gra.extra[ZB_ZBIER][1][nr]] = '2';
+     MainForm->Canvas->Draw(gra.extra[ZB_ZBIER][0][nr]*bitmap[BM_NIC]->Height,gra.extra[ZB_ZBIER][1][nr]*bitmap[BM_NIC]->Height,bitmap[BM_ZBIER]);
     }
-for (int nr = 0; nr < gra.extraCnt[CLOCK]; nr++)
+for (int nr = 0; nr < gra.extra_cnt[ZB_CLOCK]; nr++)
     {
      if (im%gra.cnt.x==0) goto clockLOS;
      else
-     if ((int)ruch[0][im]!=(int)gra.extra[CLOCK][0][nr] || (int)ruch[1][im]!=(int)gra.extra[CLOCK][1][nr])
+     if ((int)ruch[0][im]!=(int)gra.extra[ZB_CLOCK][0][nr] || (int)ruch[1][im]!=(int)gra.extra[ZB_CLOCK][1][nr])
          continue;
 
      if (gra.reftime < level.reftime)
@@ -557,102 +481,100 @@ for (int nr = 0; nr < gra.extraCnt[CLOCK]; nr++)
      if (gra.igntime < level.igntime)
      gra.igntime = gra.igntime*(1 + gra.cnt.x*gra.ign_mul*5);
 
-     gra.wazCnt+=5;
+     gra.waz_cnt+=5;
 
-     punktow -= int(5*100);
-     if (sndEx)
-         sndPlaySound("clock.wav", SND_ASYNC | SND_FILENAME);
+     punktow -= int(1*100);
+     if (sound_exists)
+         Sound("clock.wav");
 
 clockLOS:
-     MainForm->Canvas->Draw(gra.extra[CLOCK][0][nr]*bitmap[bmNIC]->Height,gra.extra[CLOCK][1][nr]*bitmap[bmNIC]->Height,bitmap[bmNIC]);
+     MainForm->Canvas->Draw(gra.extra[ZB_CLOCK][0][nr]*bitmap[BM_NIC]->Height,gra.extra[ZB_CLOCK][1][nr]*bitmap[BM_NIC]->Height,bitmap[BM_NIC]);
      do {
-         gra.extra[CLOCK][0][nr] = int(rand() % gra.cnt.x);
-         gra.extra[CLOCK][1][nr] = int(rand() % gra.cnt.y);
+         gra.extra[ZB_CLOCK][0][nr] = int(rand() % gra.cnt.x);
+         gra.extra[ZB_CLOCK][1][nr] = int(rand() % gra.cnt.y);
 
-        } while ((int)gra.mapka[gra.extra[CLOCK][0][nr]][gra.extra[CLOCK][1][nr]]!='0');
+        } while ((int)gra.mapka[gra.extra[ZB_CLOCK][0][nr]][gra.extra[ZB_CLOCK][1][nr]]!='0');
 
-        gra.mapka[gra.extra[CLOCK][0][nr]][gra.extra[CLOCK][1][nr]] = '4';
-     MainForm->Canvas->Draw(gra.extra[CLOCK][0][nr]*bitmap[bmNIC]->Height,gra.extra[CLOCK][1][nr]*bitmap[bmNIC]->Height,bitmap[bmCLOCK]);
+        gra.mapka[gra.extra[ZB_CLOCK][0][nr]][gra.extra[ZB_CLOCK][1][nr]] = '4';
+     MainForm->Canvas->Draw(gra.extra[ZB_CLOCK][0][nr]*bitmap[BM_NIC]->Height,gra.extra[ZB_CLOCK][1][nr]*bitmap[BM_NIC]->Height,bitmap[BM_CLOCK]);
     }
-for (int nr = 0; nr < gra.extraCnt[BONUS]; nr++)
+for (int nr = 0; nr < gra.extra_cnt[ZB_BONUS]; nr++)
     {
      if (im%(gra.cnt.x+gra.cnt.y)==0) goto bonusLOS;
      else
-     if ((int)ruch[0][im]!=(int)gra.extra[BONUS][0][nr] || (int)ruch[1][im]!=(int)gra.extra[BONUS][1][nr])
+     if ((int)ruch[0][im]!=(int)gra.extra[ZB_BONUS][0][nr] || (int)ruch[1][im]!=(int)gra.extra[ZB_BONUS][1][nr])
          continue;
 
      for (int zzz = 0; zzz <= 5; zzz++)
          {
-          if (gra.wazCnt <= zzz)
+          if (gra.waz_cnt <= zzz)
               break;
-          gra.mapka[ruch[0][im-gra.wazCnt+zzz]][ruch[1][im-gra.wazCnt+zzz]] = '0';
-          MainForm->Canvas->Draw(ruch[0][im-gra.wazCnt+zzz]*bitmap[bmNIC]->Height,ruch[1][im-gra.wazCnt+zzz]*bitmap[bmNIC]->Height,bitmap[bmNIC]);
+          gra.mapka[ruch[0][im-gra.waz_cnt+zzz]][ruch[1][im-gra.waz_cnt+zzz]] = '0';
+          MainForm->Canvas->Draw(ruch[0][im-gra.waz_cnt+zzz]*bitmap[BM_NIC]->Height,ruch[1][im-gra.waz_cnt+zzz]*bitmap[BM_NIC]->Height,bitmap[BM_NIC]);
          }
-     if  (gra.wazCnt<=5) gra.wazCnt = 1;
-     else gra.wazCnt-=5;
+     if  (gra.waz_cnt<=5) gra.waz_cnt = 1;
+     else gra.waz_cnt-=5;
 
      if (gra.reftime < level.reftime)
      gra.reftime = gra.reftime*(1 - gra.cnt.x*gra.ref_mul*5);
      if (gra.igntime < level.igntime)
      gra.igntime = gra.igntime*(1 - gra.cnt.x*gra.ign_mul*5);
 
-     punktow -= int(5*100);
-     if (sndEx)
-         sndPlaySound("bonus.wav", SND_ASYNC | SND_FILENAME);
- bonusLOS:
-     MainForm->Canvas->Draw(gra.extra[BONUS][0][nr]*bitmap[bmNIC]->Height,gra.extra[BONUS][1][nr]*bitmap[bmNIC]->Height,bitmap[bmNIC]);
+     punktow -= int(1*100);
+     if (sound_exists)
+         Sound("bonus.wav");
+bonusLOS:
+     MainForm->Canvas->Draw(gra.extra[ZB_BONUS][0][nr]*bitmap[BM_NIC]->Height,gra.extra[ZB_BONUS][1][nr]*bitmap[BM_NIC]->Height,bitmap[BM_NIC]);
      do {
-         gra.extra[BONUS][0][nr] = int(rand() % gra.cnt.x);
-         gra.extra[BONUS][1][nr] = int(rand() % gra.cnt.y);
+         gra.extra[ZB_BONUS][0][nr] = int(rand() % gra.cnt.x);
+         gra.extra[ZB_BONUS][1][nr] = int(rand() % gra.cnt.y);
 
-        } while ((int)gra.mapka[gra.extra[BONUS][0][nr]][gra.extra[BONUS][1][nr]]!='0');
+        } while ((int)gra.mapka[gra.extra[ZB_BONUS][0][nr]][gra.extra[ZB_BONUS][1][nr]]!='0');
 
-        gra.mapka[gra.extra[BONUS][0][nr]][gra.extra[BONUS][1][nr]] = '3';
-     MainForm->Canvas->Draw(gra.extra[BONUS][0][nr]*bitmap[bmNIC]->Height,gra.extra[BONUS][1][nr]*bitmap[bmNIC]->Height,bitmap[bmBONUS]);
+        gra.mapka[gra.extra[ZB_BONUS][0][nr]][gra.extra[ZB_BONUS][1][nr]] = '3';
+     MainForm->Canvas->Draw(gra.extra[ZB_BONUS][0][nr]*bitmap[BM_NIC]->Height,gra.extra[ZB_BONUS][1][nr]*bitmap[BM_NIC]->Height,bitmap[BM_BONUS]);
     }
-MainForm->Caption = "Grasz : "+(String)punktow+" punktów w levelu \""+plikName+"\"";
+MainForm->Caption = "Grasz : "+(String)punktow+" punktów w levelu \""+plik_current.Name+"\"";
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TMainForm::FormPaint(TObject *Sender)
 {
-Canvas->CopyRect(Canvas->ClipRect,bitmap[bmKANVAS]->Canvas,Canvas->ClipRect);
+Canvas->CopyRect(Canvas->ClipRect,bitmap[BM_CANVAS]->Canvas,Canvas->ClipRect);
 
-//if (gra==false)
-//    return;
-for (int nr = 0; nr < gra.extraCnt[CLOCK]; nr++)
-    {MainForm->Canvas->Draw(gra.extra[CLOCK][0][nr]*bitmap[bmNIC]->Height,gra.extra[CLOCK][1][nr]*bitmap[bmNIC]->Height,bitmap[bmCLOCK]);
+for (int nr = 0; nr < gra.extra_cnt[ZB_CLOCK]; nr++)
+    {MainForm->Canvas->Draw(gra.extra[ZB_CLOCK][0][nr]*bitmap[BM_NIC]->Height,gra.extra[ZB_CLOCK][1][nr]*bitmap[BM_NIC]->Height,bitmap[BM_CLOCK]);
     }
-for (int nr = 0; nr < gra.extraCnt[BONUS]; nr++)
-    {MainForm->Canvas->Draw(gra.extra[BONUS][0][nr]*bitmap[bmNIC]->Height,gra.extra[BONUS][1][nr]*bitmap[bmNIC]->Height,bitmap[bmBONUS]);
+for (int nr = 0; nr < gra.extra_cnt[ZB_BONUS]; nr++)
+    {MainForm->Canvas->Draw(gra.extra[ZB_BONUS][0][nr]*bitmap[BM_NIC]->Height,gra.extra[ZB_BONUS][1][nr]*bitmap[BM_NIC]->Height,bitmap[BM_BONUS]);
     }
-for (int nr = 0; nr < gra.extraCnt[ZBIER]; nr++)
-    {MainForm->Canvas->Draw(gra.extra[ZBIER][0][nr]*bitmap[bmNIC]->Height,gra.extra[ZBIER][1][nr]*bitmap[bmNIC]->Height,bitmap[bmZBIER]);
+for (int nr = 0; nr < gra.extra_cnt[ZB_ZBIER]; nr++)
+    {MainForm->Canvas->Draw(gra.extra[ZB_ZBIER][0][nr]*bitmap[BM_NIC]->Height,gra.extra[ZB_ZBIER][1][nr]*bitmap[BM_NIC]->Height,bitmap[BM_ZBIER]);
     }
-for (int nr = 1; nr < gra.wazCnt; nr++)
+for (int nr = 1; nr < gra.waz_cnt; nr++)
     {if (im>=nr)
-         MainForm->Canvas->Draw(ruch[0][im-nr]*bitmap[bmNIC]->Height,ruch[1][im-nr]*bitmap[bmNIC]->Height,bitmap[bmKROPA]);
+         MainForm->Canvas->Draw(ruch[0][im-nr]*bitmap[BM_NIC]->Height,ruch[1][im-nr]*bitmap[BM_NIC]->Height,bitmap[BM_KROPA]);
     }
- if (gra.wazCnt > 0)
-     MainForm->Canvas->Draw(ruch[0][im]*bitmap[bmNIC]->Height,ruch[1][im]*bitmap[bmNIC]->Height,bitmap[bmGLOWA]);
+ if (gra.waz_cnt > 0)
+     MainForm->Canvas->Draw(ruch[0][im]*bitmap[BM_NIC]->Height,ruch[1][im]*bitmap[BM_NIC]->Height,bitmap[BM_GLOWA]);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TMainForm::OpcjeClick(TObject *Sender)
 {
-OpcjeForm->UpDown1->Position = level.wazCnt;
+OpcjeForm->UpDown1->Position = level.waz_cnt;
 OpcjeForm->UpDown2->Position = level.reftime;
-OpcjeForm->UpDown3->Position = level.extraCnt[ZBIER];
+OpcjeForm->UpDown3->Position = level.extra_cnt[ZB_ZBIER];
 
 OpcjeForm->ShowModal();
 
-level.extraCnt[ZBIER] = OpcjeForm->UpDown3->Position;
+level.extra_cnt[ZB_ZBIER] = OpcjeForm->UpDown3->Position;
    level.reftime = OpcjeForm->UpDown2->Position;
-level.wazCnt = OpcjeForm->UpDown1->Position;
+level.waz_cnt = OpcjeForm->UpDown1->Position;
 
-OpcjeForm->Edit3->Text = level.extraCnt[ZBIER];
+OpcjeForm->Edit3->Text = level.extra_cnt[ZB_ZBIER];
 OpcjeForm->Edit2->Text = level.reftime;
-OpcjeForm->Edit1->Text = level.wazCnt;
+OpcjeForm->Edit1->Text = level.waz_cnt;
 }
 //---------------------------------------------------------------------------
 
@@ -661,10 +583,10 @@ void __fastcall TMainForm::PauzaClick(TObject *Sender)
 if (stop==true)
     return;
 pauza=!pauza;
-if (sndEx)
-    sndPlaySound("pauza.wav", SND_ASYNC | SND_FILENAME);
-if (pauza==true) MainForm->Caption = "Pauza : " + (String)punktow + " punktów w levelu \""+plikName+"\"";
-else MainForm->Caption = "Grasz : " + (String)punktow + " punktów w levelu \""+plikName+"\"";
+if (sound_exists)
+    Sound("pauza.wav");
+if (pauza==true) MainForm->Caption = "Pauza : " + (String)punktow + " punktów w levelu \""+plik_current.Name+"\"";
+else MainForm->Caption = "Grasz : " + (String)punktow + " punktów w levelu \""+plik_current.Name+"\"";
 }
 //---------------------------------------------------------------------------
 
@@ -676,9 +598,8 @@ Pauza->Enabled = false;
  pauza = false;
   gram = false;
   stop = true;
-if (sndEx)
-    sndPlaySound("stop.wav", SND_ASYNC | SND_FILENAME);
-MainForm->Caption = "Koniec : "+(String)punktow+" punktów w levelu "+plikName;
+if (sound_exists) Sound("stop.wav");
+MainForm->Caption = "Koniec : "+(String)punktow+" punktów w levelu "+plik_current.Name;
 }
 //---------------------------------------------------------------------------
 
@@ -701,7 +622,7 @@ pauza = false;
 
 void __fastcall TMainForm::AboutClick(TObject *Sender)
 {
-AboutBox->ShowModal();
+AboutForm->ShowModal();
 }
 //---------------------------------------------------------------------------
 
@@ -716,8 +637,7 @@ void __fastcall TMainForm::N11Click(TObject *Sender)
 {
 if (gram==true)
     return;
-plikName = N11->Caption;
-Load();
+Load(plik[1].Name);
 }
 //---------------------------------------------------------------------------
 
@@ -725,8 +645,7 @@ void __fastcall TMainForm::N21Click(TObject *Sender)
 {
 if (gram==true)
     return;
-plikName = N21->Caption;
-Load();
+Load(plik[2].Name);
 }
 //---------------------------------------------------------------------------
 
@@ -734,8 +653,7 @@ void __fastcall TMainForm::N31Click(TObject *Sender)
 {
 if (gram==true)
     return;
-plikName = N31->Caption;
-Load();
+Load(plik[3].Name);
 }
 //---------------------------------------------------------------------------
 
@@ -743,8 +661,7 @@ void __fastcall TMainForm::N41Click(TObject *Sender)
 {
 if (gram==true)
     return;
-plikName = N41->Caption;
-Load();
+Load(plik[4].Name);
 }
 //---------------------------------------------------------------------------
 
@@ -752,8 +669,7 @@ void __fastcall TMainForm::N51Click(TObject *Sender)
 {
 if (gram==true)
     return;
-plikName = N51->Caption;
-Load();
+Load(plik[5].Name);
 }
 //---------------------------------------------------------------------------
 
@@ -761,8 +677,7 @@ void __fastcall TMainForm::N61Click(TObject *Sender)
 {
 if (gram==true)
     return;
-plikName = N61->Caption;
-Load();
+Load(plik[6].Name);
 }
 //---------------------------------------------------------------------------
 
@@ -770,8 +685,7 @@ void __fastcall TMainForm::N71Click(TObject *Sender)
 {
 if (gram==true)
     return;
-plikName = N71->Caption;
-Load();
+Load(plik[7].Name);
 }
 //---------------------------------------------------------------------------
 
@@ -779,8 +693,7 @@ void __fastcall TMainForm::N81Click(TObject *Sender)
 {
 if (gram==true)
     return;
-plikName = N81->Caption;
-Load();
+Load(plik[8].Name);
 }
 //---------------------------------------------------------------------------
 
@@ -788,8 +701,7 @@ void __fastcall TMainForm::N91Click(TObject *Sender)
 {
 if (gram==true)
     return;
-plikName = N91->Caption;
-Load();
+Load(plik[9].Name);
 }
 //---------------------------------------------------------------------------
 
@@ -797,8 +709,7 @@ void __fastcall TMainForm::N101Click(TObject *Sender)
 {
 if (gram==true)
     return;
-plikName = N101->Caption;
-Load();
+Load(plik[10].Name);
 }
 //---------------------------------------------------------------------------
 
@@ -806,23 +717,118 @@ void __fastcall TMainForm::N111Click(TObject *Sender)
 {
 if (gram==true)
     return;
-plikName = N111->Caption;
-Load();
+Load(plik[11].Name);
 }
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::N121Click(TObject *Sender)
 {
 if (gram==true)
     return;
-plikName = N121->Caption;
-Load();
+Load(plik[12].Name);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TMainForm::StartClick(TObject *Sender)
 {
-if (plikIndex!=0)
-    GrajFunk();
+if (plik_current.Index!=0) GrajFunk();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::FormShow(TObject *Sender)
+{
+static bool first_time = true;
+if (!first_time)
+return;
+
+first_time = false;
+	  gram = false;
+	 pauza = false;
+	  stop = true;
+
+bitmap[BM_CANVAS]->Height = 1024;
+ bitmap[BM_CANVAS]->Width = 1024;
+bitmap[BM_CANVAS]->LoadFromResourceName((int)hInst,"LOGO");
+
+ bitmap[BM_KROPA]->LoadFromFile("kropa.bmp");
+ bitmap[BM_GLOWA]->LoadFromFile("glowa.bmp");
+   bitmap[BM_NIC]->LoadFromFile("nic.bmp");
+ bitmap[BM_ZBIER]->LoadFromFile("zbier.bmp");
+ bitmap[BM_BONUS]->LoadFromFile("bonus.bmp");
+ bitmap[BM_CLOCK]->LoadFromFile("clock.bmp");
+  bitmap[BM_MAPA]->LoadFromFile("mapa.bmp");
+
+setmem(&level,sizeof(level),0x00);
+
+for (plik_search_ret = FindFirst("*.lev",faAnyFile,plik_search), plik_current.Index = 0; !plik_search_ret && plik_current.Index < 12; plik_search_ret = FindNext(plik_search))
+    {
+     ++plik_current.Index;
+     plik[plik_current.Index].Name = plik_search.Name;
+
+     switch (plik_current.Index)
+    	{
+	    case 1:
+	          N11->Visible = true;
+	          N11->Enabled = true;
+	          N11->Caption = plik_search.Name;
+	    break;
+	    case 2:
+	          N21->Visible = true;
+	          N21->Enabled = true;
+	          N21->Caption = plik_search.Name;
+	    break;
+	    case 3:
+	          N31->Visible = true;
+	          N31->Enabled = true;
+	          N31->Caption = plik_search.Name;
+	    break;
+	    case 4:
+	          N41->Visible = true;
+	          N41->Enabled = true;
+	          N41->Caption = plik_search.Name;
+	    break;
+	    case 5:
+	          N51->Visible = true;
+	          N51->Enabled = true;
+	          N51->Caption = plik_search.Name;
+	    break;
+	    case 6:
+	          N61->Visible = true;
+	          N61->Enabled = true;
+	          N61->Caption = plik_search.Name;
+	    break;
+	    case 7:
+	          N71->Visible = true;
+	          N71->Enabled = true;
+	          N71->Caption = plik_search.Name;
+	    break;
+	    case 8:
+	          N81->Visible = true;
+	          N81->Enabled = true;
+	          N81->Caption = plik_search.Name;
+	    break;
+	    case 9:
+	          N91->Visible = true;
+	          N91->Enabled = true;
+	          N91->Caption = plik_search.Name;
+	    break;
+	    case 10:
+	         N101->Visible = true;
+	         N101->Enabled = true;
+	         N101->Caption = plik_search.Name;
+	    break;
+	    case 11:
+	        N111->Visible = true;
+	         N111->Enabled = true;
+	         N111->Caption = plik_search.Name;
+	    break;
+	    case 12:
+	         N121->Visible = true;
+	         N121->Enabled = true;
+	         N121->Caption = plik_search.Name;
+	    break;
+	   }
+	}
+MainForm->Repaint();
 }
 //---------------------------------------------------------------------------
 
