@@ -1,30 +1,30 @@
 [Closed Files]
-File_0=SourceModule,'D:\stasiek\My Projects\OBSOLETE\PROGS\Snake.VCL\Waz_form.dfm',0,1,1,1,1,0,0
-File_1=SourceModule,'D:\stasiek\My Projects\OBSOLETE\FORM_TEMPLATES\About_frm.cpp',0,1,1,19,29,1,0
-File_2=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\tsoft_test.h',0,1,1,15,23,0,0
-File_3=SourceModule,'c:\program files\borland\cbuilder6\include\stl\_mbstate.h',0,1,23,21,40,0,0
-File_4=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\tsoft_test.cpp',0,1,95,8,100,0,0
-File_5=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\koperek32_main.cpp',0,1,50,18,66,0,0
-File_6=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\io\tsoft_console.cpp',0,1,1,24,10,0,0
-File_7=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\compression\tsoft_compression_static_huff.cpp',0,1,168,33,220,0,0
-File_8=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\compression\tsoft_compression_bwt_matrix2.cpp',0,1,6,18,4,0,0
-File_9=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\cpu\tsoft_cpu.cpp',0,1,8,20,1378,0,0
+File_0=SourceModule,'D:\OBSOLETE\PROGS\Snake.VCL\Waz_form.dfm',0,1,1,1,1,0,0
+File_1=SourceModule,'D:\stasiek\My Projects\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp',0,1,571,14,12,0,0
+File_2=SourceModule,'D:\stasiek\My Projects\OBSOLETE\PROGS\Snake.VCL\Waz_form.dfm',0,1,1,1,1,0,0
+File_3=SourceModule,'D:\stasiek\My Projects\OBSOLETE\FORM_TEMPLATES\About_frm.cpp',0,1,1,19,29,1,0
+File_4=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\tsoft_test.h',0,1,1,15,23,0,0
+File_5=SourceModule,'c:\program files\borland\cbuilder6\include\stl\_mbstate.h',0,1,23,21,40,0,0
+File_6=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\tsoft_test.cpp',0,1,95,8,100,0,0
+File_7=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\koperek32_main.cpp',0,1,50,18,66,0,0
+File_8=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\io\tsoft_console.cpp',0,1,1,24,10,0,0
+File_9=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\compression\tsoft_compression_static_huff.cpp',0,1,168,33,220,0,0
 
 [Modules]
-Module0=D:\stasiek\My Projects\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp
+Module0=D:\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp
 Count=1
 EditWindowCount=1
 
-[D:\stasiek\My Projects\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp]
+[D:\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp]
 ModuleType=SourceModule
 FormState=1
-FormOnTop=0
+FormOnTop=1
 
-[D:\stasiek\My Projects\OBSOLETE\FORM_TEMPLATES\ProjectGroup1.bpg]
+[D:\OBSOLETE\PROGS\Snake.VCL\ProjectGroup1.bpg]
 FormState=0
 FormOnTop=0
 
-[D:\stasiek\My Projects\OBSOLETE\PROGS\Snake.VCL\Snake.bpr]
+[D:\OBSOLETE\PROGS\Snake.VCL\Snake.bpr]
 FormState=0
 FormOnTop=0
 
@@ -35,17 +35,15 @@ View0=0
 MessageView=MessageView@EditWindow0
 Create=1
 Visible=1
-State=2
-Left=405
-Top=126
+State=1
+Left=369
+Top=199
 Width=870
 Height=502
-MaxLeft=-4
-MaxTop=97
-MaxWidth=1288
-MaxHeight=679
-ClientWidth=1280
-ClientHeight=652
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=862
+ClientHeight=475
 LeftPanelSize=0
 RightPanelSize=0
 BottomPanelSize=0
@@ -53,15 +51,14 @@ BottomPanelClients=MessageView@EditWindow0
 BottomPanelData=00000400010000000B0000004D657373616765566965770000000000000000000000000000000000FFFFFFFF
 
 [View0]
-Module=D:\stasiek\My Projects\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp
-CursorX=14
-CursorY=12
-TopLine=571
+Module=D:\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp
+CursorX=1
+CursorY=1
+TopLine=1
 LeftCol=1
 
 [Watches]
-Count=1
-Watch0='lpDestination',8,0,18,1,1
+Count=0
 
 [Breakpoints]
 Count=0
@@ -72,16 +69,14 @@ Count=0
 [Main Window]
 Create=1
 Visible=1
-State=2
-Left=9
-Top=15
-Width=1271
+State=0
+Left=0
+Top=0
+Width=1280
 Height=105
 MaxLeft=-1
 MaxTop=-1
-MaxWidth=1288
-MaxHeight=105
-ClientWidth=1280
+ClientWidth=1272
 ClientHeight=78
 
 [ProjectManager]
@@ -99,23 +94,6 @@ ClientHeight=279
 TBDockHeight=303
 LRDockWidth=438
 Dockable=1
-
-[CPUWindow]
-Create=1
-Visible=0
-State=0
-Left=373
-Top=223
-Width=533
-Height=353
-MaxLeft=-1
-MaxTop=-1
-ClientWidth=525
-ClientHeight=326
-DumpPane=79
-DisassemblyPane=187
-RegisterPane=231
-FlagPane=64
 
 [AlignmentPalette]
 Create=1
@@ -135,34 +113,34 @@ Create=1
 Visible=1
 State=0
 Left=0
-Top=359
-Width=192
-Height=381
+Top=107
+Width=190
+Height=515
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=182
-ClientHeight=355
-TBDockHeight=381
+ClientWidth=180
+ClientHeight=489
+TBDockHeight=515
 LRDockWidth=190
 Dockable=1
 SplitPos=85
 ArrangeBy=Name
-SelectedItem=Font
-ExpandedItems=Anchors,Constraints
-HiddenCategories=
+SelectedItem=Caption
+ExpandedItems=
+HiddenCategories=Legacy
 ShowStatusBar=1
 
 [MessageView@EditWindow0]
 Create=1
 Visible=0
 State=0
-Left=12
-Top=0
-Width=850
+Left=-211
+Top=-499
+Width=443
 Height=52
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=850
+ClientWidth=443
 ClientHeight=52
 TBDockHeight=52
 LRDockWidth=443
