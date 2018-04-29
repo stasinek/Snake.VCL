@@ -1,14 +1,14 @@
 [Closed Files]
-File_0=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Dni_frm.cpp',0,1,317,9,320,0,0
-File_1=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Main_frm.cpp',0,1,1,26,11,0,0
-File_2=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\CORE.H',0,1,1,45,7,0,0
-File_3=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Atab_frm.cpp',0,1,1,1,1,0,0
-File_4=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Unit1.cpp',0,1,1,1,1,0,0
-File_5=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Zoom_frm.cpp',0,1,1,72,27,0,0
-File_6=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Zeus_frm.cpp',0,1,17,1,45,0,0
-File_7=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Unit4.cpp',0,1,1,1,1,0,0
-File_8=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Tips_frm.cpp',0,1,1,1,1,0,0
-File_9=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Size_frm.cpp',0,1,1,1,1,0,0
+File_0=SourceModule,'D:\stasiek\My Projects\OBSOLETE\PROGS\Snake.VCL\Waz_form.dfm',0,1,1,1,1,0,0
+File_1=SourceModule,'D:\stasiek\My Projects\OBSOLETE\FORM_TEMPLATES\About_frm.cpp',0,1,1,19,29,1,0
+File_2=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\tsoft_test.h',0,1,1,15,23,0,0
+File_3=SourceModule,'c:\program files\borland\cbuilder6\include\stl\_mbstate.h',0,1,23,21,40,0,0
+File_4=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\tsoft_test.cpp',0,1,95,8,100,0,0
+File_5=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\koperek32_main.cpp',0,1,50,18,66,0,0
+File_6=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\io\tsoft_console.cpp',0,1,1,24,10,0,0
+File_7=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\compression\tsoft_compression_static_huff.cpp',0,1,168,33,220,0,0
+File_8=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\compression\tsoft_compression_bwt_matrix2.cpp',0,1,6,18,4,0,0
+File_9=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\cpu\tsoft_cpu.cpp',0,1,8,20,1378,0,0
 
 [Modules]
 Module0=D:\stasiek\My Projects\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp
@@ -20,7 +20,7 @@ ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[C:\Program Files\Borland\CBuilder5\Projects\ProjectGroup1.bpg]
+[D:\stasiek\My Projects\OBSOLETE\FORM_TEMPLATES\ProjectGroup1.bpg]
 FormState=0
 FormOnTop=0
 
@@ -35,15 +35,17 @@ View0=0
 MessageView=MessageView@EditWindow0
 Create=1
 Visible=1
-State=0
+State=2
 Left=405
 Top=126
 Width=870
 Height=502
-MaxLeft=-1
-MaxTop=-1
-ClientWidth=862
-ClientHeight=475
+MaxLeft=-4
+MaxTop=97
+MaxWidth=1288
+MaxHeight=679
+ClientWidth=1280
+ClientHeight=652
 LeftPanelSize=0
 RightPanelSize=0
 BottomPanelSize=0
@@ -52,13 +54,14 @@ BottomPanelData=00000400010000000B0000004D65737361676556696577000000000000000000
 
 [View0]
 Module=D:\stasiek\My Projects\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp
-CursorX=1
-CursorY=1
-TopLine=1
+CursorX=14
+CursorY=12
+TopLine=571
 LeftCol=1
 
 [Watches]
-Count=0
+Count=1
+Watch0='lpDestination',8,0,18,1,1
 
 [Breakpoints]
 Count=0
@@ -70,9 +73,9 @@ Count=0
 Create=1
 Visible=1
 State=2
-Left=42
+Left=9
 Top=15
-Width=1238
+Width=1271
 Height=105
 MaxLeft=-1
 MaxTop=-1
@@ -97,6 +100,23 @@ TBDockHeight=303
 LRDockWidth=438
 Dockable=1
 
+[CPUWindow]
+Create=1
+Visible=0
+State=0
+Left=373
+Top=223
+Width=533
+Height=353
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=525
+ClientHeight=326
+DumpPane=79
+DisassemblyPane=187
+RegisterPane=231
+FlagPane=64
+
 [AlignmentPalette]
 Create=1
 Visible=0
@@ -114,21 +134,21 @@ ClientHeight=60
 Create=1
 Visible=1
 State=0
-Left=928
-Top=230
-Width=190
+Left=0
+Top=359
+Width=192
 Height=381
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=180
+ClientWidth=182
 ClientHeight=355
 TBDockHeight=381
 LRDockWidth=190
 Dockable=1
 SplitPos=85
 ArrangeBy=Name
-SelectedItem=Caption
-ExpandedItems=
+SelectedItem=Font
+ExpandedItems=Anchors,Constraints
 HiddenCategories=
 ShowStatusBar=1
 

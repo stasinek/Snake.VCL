@@ -8,6 +8,7 @@
 #include <Forms.hpp>
 #include <ExtCtrls.hpp>
 #include <Menus.hpp>
+#include <ComCtrls.hpp>
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
 {
@@ -33,6 +34,12 @@ __published:	// IDE-managed Componentsvoid
     TMenuItem *N21;
     TMenuItem *N11;
     TMenuItem *About;
+    TMainMenu *MainMenu1;
+    TMenuItem *O1;
+    TMenuItem *EXIT1;
+    TMenuItem *N1;
+    TMenuItem *START1;
+    TStatusBar *StatusBar1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &key,TShiftState Shift);
     void __fastcall FormDestroy(TObject *Sender);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);

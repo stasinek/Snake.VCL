@@ -1,36 +1,44 @@
 [Closed Files]
-File_0=SourceModule,'D:\stasiek\My Projects\prc++\OBSOLETE\FORM_TEMPLATES\About_frm.cpp',0,1,31,1,34,0,1
-File_1=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\tsoft_test.h',0,1,1,15,23,0,0
-File_2=SourceModule,'c:\program files\borland\cbuilder6\include\stl\_mbstate.h',0,1,23,21,40,0,0
-File_3=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\tsoft_test.cpp',0,1,95,8,100,0,0
-File_4=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\koperek32_main.cpp',0,1,50,18,66,0,0
-File_5=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\io\tsoft_console.cpp',0,1,1,24,10,0,0
-File_6=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\compression\tsoft_compression_static_huff.cpp',0,1,168,33,220,0,0
-File_7=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\compression\tsoft_compression_bwt_matrix2.cpp',0,1,6,18,4,0,0
-File_8=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\cpu\tsoft_cpu.cpp',0,1,8,20,1378,0,0
+File_0=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Dni_frm.cpp',0,1,317,9,320,0,0
+File_1=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Main_frm.cpp',0,1,1,26,11,0,0
+File_2=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\CORE.H',0,1,1,45,7,0,0
+File_3=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Atab_frm.cpp',0,1,1,1,1,0,0
+File_4=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Unit1.cpp',0,1,1,1,1,0,0
+File_5=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Zoom_frm.cpp',0,1,1,72,27,0,0
+File_6=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Zeus_frm.cpp',0,1,17,1,45,0,0
+File_7=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Unit4.cpp',0,1,1,1,1,0,0
+File_8=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Tips_frm.cpp',0,1,1,1,1,0,0
+File_9=SourceModule,'C:\Program Files\Borland\CBuilder5\Projects\OBSOLETE\PROGS\Panel.VCL\Size_frm.cpp',0,1,1,1,1,0,0
 
 [Modules]
-Module0=D:\stasiek\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp
-Count=1
+Module0=D:\stasiek\My Projects\OBSOLETE\FORM_TEMPLATES\About_frm.cpp
+Module1=D:\stasiek\My Projects\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp
+Count=2
 EditWindowCount=1
 
-[D:\stasiek\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp]
+[D:\stasiek\My Projects\OBSOLETE\FORM_TEMPLATES\About_frm.cpp]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=1
 
-[C:\Program Files\Borland\CBuilder5\Projects\ProjectGroup1.bpg]
+[D:\stasiek\My Projects\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\stasiek\My Projects\OBSOLETE\PACKAGES\ProjectGroup1.bpg]
 FormState=0
 FormOnTop=0
 
-[D:\stasiek\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Snake.bpr]
+[D:\stasiek\My Projects\OBSOLETE\PROGS\Snake.VCL\Snake.bpr]
 FormState=0
 FormOnTop=0
 
 [EditWindow0]
-ViewCount=1
-CurrentView=0
+ViewCount=2
+CurrentView=1
 View0=0
+View1=1
 MessageView=MessageView@EditWindow0
 Create=1
 Visible=1
@@ -50,10 +58,17 @@ BottomPanelClients=MessageView@EditWindow0
 BottomPanelData=00000400010000000B0000004D657373616765566965770000000000000000000000000000000000FFFFFFFF
 
 [View0]
-Module=D:\stasiek\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp
-CursorX=34
-CursorY=16
-TopLine=21
+Module=D:\stasiek\My Projects\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp
+CursorX=1
+CursorY=1
+TopLine=1
+LeftCol=1
+
+[View1]
+Module=D:\stasiek\My Projects\OBSOLETE\FORM_TEMPLATES\About_frm.cpp
+CursorX=1
+CursorY=1
+TopLine=1
 LeftCol=1
 
 [Watches]
@@ -68,19 +83,21 @@ Count=0
 [Main Window]
 Create=1
 Visible=1
-State=0
-Left=0
-Top=0
-Width=1280
+State=2
+Left=42
+Top=15
+Width=1238
 Height=105
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1272
+MaxWidth=1288
+MaxHeight=105
+ClientWidth=1280
 ClientHeight=78
 
 [ProjectManager]
 Create=1
-Visible=0
+Visible=1
 State=0
 Left=369
 Top=372
@@ -93,6 +110,23 @@ ClientHeight=279
 TBDockHeight=303
 LRDockWidth=438
 Dockable=1
+
+[CPUWindow]
+Create=1
+Visible=0
+State=0
+Left=373
+Top=223
+Width=533
+Height=353
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=525
+ClientHeight=326
+DumpPane=79
+DisassemblyPane=187
+RegisterPane=231
+FlagPane=64
 
 [AlignmentPalette]
 Create=1
@@ -111,35 +145,35 @@ ClientHeight=60
 Create=1
 Visible=1
 State=0
-Left=0
-Top=107
+Left=928
+Top=230
 Width=190
-Height=515
+Height=381
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=180
-ClientHeight=489
-TBDockHeight=515
+ClientHeight=355
+TBDockHeight=381
 LRDockWidth=190
 Dockable=1
 SplitPos=85
 ArrangeBy=Name
-SelectedItem=Caption
+SelectedItem=Name
 ExpandedItems=
-HiddenCategories=Legacy
+HiddenCategories=
 ShowStatusBar=1
 
 [MessageView@EditWindow0]
 Create=1
 Visible=0
 State=0
-Left=-211
-Top=-499
-Width=443
+Left=12
+Top=0
+Width=850
 Height=52
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=443
+ClientWidth=850
 ClientHeight=52
 TBDockHeight=52
 LRDockWidth=443
