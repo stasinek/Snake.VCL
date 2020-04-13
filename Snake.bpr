@@ -7,11 +7,12 @@
     <OBJFILES value="Waz.obj Waz_form.obj Opc.obj ..\..\FORM_TEMPLATES\About_frm.obj"/>
     <RESFILES value="Waz.res"/>
     <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
     <DEFFILE value=""/>
     <RESDEPEN value="$(RESFILES) Waz_form.dfm Opc.dfm ..\..\FORM_TEMPLATES\About_frm.dfm"/>
     <LIBFILES value=""/>
-    <LIBRARIES value="VCLX50.lib bcbsmp50.lib Vcl50.lib dclusr50.lib vclx.lib vcle.lib vcl.lib"/>
-    <SPARELIBS value="vcl.lib vcle.lib vclx.lib dclusr50.lib Vcl50.lib bcbsmp50.lib VCLX50.lib"/>
+    <LIBRARIES value="VCLX50.lib bcbsmp50.lib Vcl50.lib dclusr50.lib vcl.lib"/>
+    <SPARELIBS value="vcl.lib dclusr50.lib Vcl50.lib bcbsmp50.lib VCLX50.lib"/>
     <PACKAGES value="db.bpi vcldb.bpi bde.bpi vcldbx.bpi"/>
     <PATHCPP value=".;..\..\FORM_TEMPLATES"/>
     <PATHPAS value=".;"/>

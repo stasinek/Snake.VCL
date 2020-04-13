@@ -34,6 +34,9 @@ __published:	// IDE-managed Componentsvoid
     TMenuItem *N21;
     TMenuItem *N11;
     TMenuItem *About;
+        TStatusBar *StatusBar1;
+        TMainMenu *MainMenu1;
+        TMenuItem *GRAJ1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &key,TShiftState Shift);
     void __fastcall FormDestroy(TObject *Sender);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);

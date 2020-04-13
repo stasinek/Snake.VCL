@@ -177,7 +177,7 @@ sndPlaySoundA(a_plik_name.c_str(), SND_ASYNC | SND_FILENAME);
 
 void __fastcall TMainForm::Load(AnsiString a_plik_name)
 {
-bitmap[BM_CANVAS]->Height = 1024;
+bitmap[BM_CANVAS]->Height = 2048;
 bitmap[BM_CANVAS]->Width = 1024;
 
 setmem(&gra,sizeof(gra),0x00);
@@ -190,7 +190,7 @@ if (!FileExists(GetCurrentDir() + "\\" + a_plik_name))
    {ShowMessage("Nie ma pliku konfiguracji: " + a_plik_name);
     return;
    }
-char line_buf[256] = "";
+char line_buf[512] = "";
 ifstream plik_hnd;
 plik_hnd.open(a_plik_name.c_str());
 for (level.cnt.y = 0; !plik_hnd.eof(); level.cnt.y++) // konfig parametry
@@ -369,7 +369,6 @@ StopClick(this);
 void __fastcall TMainForm::Ruch(void)
 {
 do {
-
     do { Sleep(10);
          czas = timeGetTime();
          Application->ProcessMessages();
@@ -474,7 +473,7 @@ for (nr = 0; nr < gra.extra_cnt[ZB_ZBIER]; nr++)
     }
 for (nr = 0; nr < gra.extra_cnt[ZB_CLOCK]; nr++)
     {
-     if (im%gra.cnt.x==0) goto clockLOS;
+     if (im%gra.cnt.x==0) goto CLOCK_LOS_LABEL;
      else
      if ((int)ruch[0][im]!=(int)gra.extra[ZB_CLOCK][0][nr] || (int)ruch[1][im]!=(int)gra.extra[ZB_CLOCK][1][nr])
          continue;
@@ -490,7 +489,7 @@ for (nr = 0; nr < gra.extra_cnt[ZB_CLOCK]; nr++)
      if (sound_exists)
          Sound("clock.wav");
 
-clockLOS:
+CLOCK_LOS_LABEL:
      MainForm->Canvas->Draw(gra.extra[ZB_CLOCK][0][nr]*bitmap[BM_NIC]->Height,gra.extra[ZB_CLOCK][1][nr]*bitmap[BM_NIC]->Height,bitmap[BM_NIC]);
      do {
          gra.extra[ZB_CLOCK][0][nr] = int(rand() % gra.cnt.x);
@@ -503,7 +502,7 @@ clockLOS:
     }
 for (nr = 0; nr < gra.extra_cnt[ZB_BONUS]; nr++)
     {
-     if (im%(gra.cnt.x+gra.cnt.y)==0) goto bonusLOS;
+     if (im%(gra.cnt.x+gra.cnt.y)==0) goto BONUS_LOS_LABEL;
      else
      if ((int)ruch[0][im]!=(int)gra.extra[ZB_BONUS][0][nr] || (int)ruch[1][im]!=(int)gra.extra[ZB_BONUS][1][nr])
          continue;
@@ -526,7 +525,7 @@ for (nr = 0; nr < gra.extra_cnt[ZB_BONUS]; nr++)
      punktow -= int(1*100);
      if (sound_exists)
          Sound("bonus.wav");
-bonusLOS:
+BONUS_LOS_LABEL:
      MainForm->Canvas->Draw(gra.extra[ZB_BONUS][0][nr]*bitmap[BM_NIC]->Height,gra.extra[ZB_BONUS][1][nr]*bitmap[BM_NIC]->Height,bitmap[BM_NIC]);
      do {
          gra.extra[ZB_BONUS][0][nr] = int(rand() % gra.cnt.x);
@@ -761,7 +760,7 @@ first_time = false;
 	  stop = true;
 
 bitmap[BM_CANVAS]->Height = 1024;
- bitmap[BM_CANVAS]->Width = 1024;
+ bitmap[BM_CANVAS]->Width = 2048;
 bitmap[BM_CANVAS]->LoadFromResourceName((int)hInst,"LOGO");
 
  bitmap[BM_KROPA]->LoadFromFile("kropa.bmp");
@@ -846,4 +845,5 @@ for (plik_search_ret = FindFirst("*.lev",faAnyFile,plik_search), plik_current.In
 MainForm->Repaint();
 }
 //---------------------------------------------------------------------------
+
 
