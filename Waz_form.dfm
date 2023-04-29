@@ -1,14 +1,16 @@
 object MainForm: TMainForm
-  Left = 292
-  Top = 256
+  Left = 257
+  Top = 290
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'SNAKE 1.001'
-  ClientHeight = 64
-  ClientWidth = 300
+  Caption = 'SNAKE 1.0'
+  ClientHeight = 84
+  ClientWidth = 435
   Color = clBlack
+  Constraints.MinHeight = 130
+  Constraints.MinWidth = 430
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWhite
   Font.Height = -11
@@ -64,8 +66,8 @@ object MainForm: TMainForm
   TextHeight = 13
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 45
-    Width = 300
+    Top = 65
+    Width = 435
     Height = 19
     Panels = <>
     SimplePanel = False
@@ -192,10 +194,44 @@ object MainForm: TMainForm
     end
   end
   object MainMenu1: TMainMenu
-    Left = 104
-    Top = 8
-    object GRAJ1: TMenuItem
-      Caption = 'GRAJ'
+    Left = 112
+    Top = 4
+    object Start2: TMenuItem
+      Caption = 'Sta&rt'
+      Enabled = False
+      OnClick = StartClick
+    end
+    object Pauza2: TMenuItem
+      Caption = '&Pauza'
+      Enabled = False
+      OnClick = PauzaClick
+    end
+    object Stop2: TMenuItem
+      Caption = '&Stop'
+      Enabled = False
+      OnClick = StopClick
+    end
+    object N2: TMenuItem
+      Caption = '|'
+    end
+    object Mapka2: TMenuItem
+      Caption = '&Mapa F1-F12'
+      OnClick = Mapka2Click
+    end
+    object Opcje2: TMenuItem
+      Caption = '&Opcje'
+      OnClick = OpcjeClick
+    end
+    object N1: TMenuItem
+      Caption = '|'
+    end
+    object About2: TMenuItem
+      Caption = '&O...'
+      OnClick = AboutClick
+    end
+    object Zamknij2: TMenuItem
+      Caption = '&KONIEC'
+      OnClick = ZamknijClick
     end
   end
 end

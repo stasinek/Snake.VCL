@@ -2,14 +2,15 @@
 <!-- C++Builder XML Project -->
 <PROJECT>
   <MACROS>
-    <VERSION value="BCB.06.00"/>
+    <VERSION value="BCB.05.00"/>
     <PROJECT value="Snake.exe"/>
-    <OBJFILES value="Waz.obj Waz_form.obj Opc.obj ..\..\FORM_TEMPLATES\About_frm.obj"/>
+    <OBJFILES value="Waz.obj Waz_form.obj Opc.obj ..\..\FORM_TEMPLATES\About_frm.obj Unit1.obj"/>
     <RESFILES value="Waz.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
     <DEFFILE value=""/>
-    <RESDEPEN value="$(RESFILES) Waz_form.dfm Opc.dfm ..\..\FORM_TEMPLATES\About_frm.dfm"/>
+    <RESDEPEN value="$(RESFILES) Waz_form.dfm Opc.dfm ..\..\FORM_TEMPLATES\About_frm.dfm 
+      Unit1.dfm"/>
     <LIBFILES value=""/>
     <LIBRARIES value="VCLX50.lib bcbsmp50.lib Vcl50.lib dclusr50.lib vcl.lib"/>
     <SPARELIBS value="vcl.lib dclusr50.lib Vcl50.lib bcbsmp50.lib VCLX50.lib"/>

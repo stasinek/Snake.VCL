@@ -5,14 +5,13 @@
 #include "Waz_form.h"
 #include "Opc.h"
 #include "../../FORM_TEMPLATES/About_frm.h"
+#include "Unit1.h"
 //---------------------------------------------------------------------------
 #include <mmsystem.h>
 #include <fstream.h>
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 //---------------------------------------------------------------------------
-int mapa = 0;
-
 enum {
 BM_ZBIER  = 0,
 BM_BONUS  = 1,
@@ -23,7 +22,7 @@ BM_NIC    = 5,
 BM_KROPA  = 6,
 BM_GLOWA  = 7
 };
-
+//---------------------------------------------------------------------------
 enum {
 ZB_ZBIER = 0,
 ZB_BONUS = 1,
@@ -32,19 +31,18 @@ ZB_CLOCK = 2
 //---------------------------------------------------------------------------
 TMainForm *MainForm;
  //---------------------------------------------------------------------------
-struct { AnsiString Name;
-} plik[13];
+struct __plik plik[13];
+struct TSearchRec plik_search;
+int plik_search_ret;
 
 struct { AnsiString Name;
 long Index;
 } plik_current;
 
-struct TSearchRec plik_search;
-int plik_search_ret;
-
 Graphics::TBitmap* bitmap[8];
 bool sound_exists = FileExists("pauza.wav") && FileExists("zbier.wav") && FileExists("clock.wav") && FileExists("bonus.wav") && FileExists("stop.wav");
 
+long mapa = 0;
 long im = 0;
 char ruch[2][1024*64];
 long punktow = 0;
@@ -60,10 +58,83 @@ float reftime, igntime, ref_mul, ign_mul;
 } level, gra;
 //---------------------------------------------------------------------------
 
- __fastcall TMainForm::TMainForm(TComponent* Owner)
-    : TForm(Owner),gram(false),stop(false),pauza(false)
+void __fastcall TMainForm::Levele()
 {
-    hInst = (HINSTANCE)HInstance;
+for (plik_search_ret = FindFirst("*.lev",faAnyFile,plik_search), plik_current.Index = 0; !plik_search_ret && plik_current.Index < 12; plik_search_ret = FindNext(plik_search))
+    {
+     ++plik_current.Index;
+     plik[plik_current.Index].Name = plik_search.Name;
+
+     switch (plik_current.Index)
+    	{
+	    case 1:
+	          N11->Visible = true;
+	          N11->Enabled = true;
+	          N11->Caption = plik_search.Name;
+	    break;
+	    case 2:
+	          N21->Visible = true;
+	          N21->Enabled = true;
+	          N21->Caption = plik_search.Name;
+	    break;
+	    case 3:
+	          N31->Visible = true;
+	          N31->Enabled = true;
+	          N31->Caption = plik_search.Name;
+	    break;
+	    case 4:
+	          N41->Visible = true;
+	          N41->Enabled = true;
+	          N41->Caption = plik_search.Name;
+	    break;
+	    case 5:
+	          N51->Visible = true;
+	          N51->Enabled = true;
+	          N51->Caption = plik_search.Name;
+	    break;
+	    case 6:
+	          N61->Visible = true;
+	          N61->Enabled = true;
+	          N61->Caption = plik_search.Name;
+	    break;
+	    case 7:
+	          N71->Visible = true;
+	          N71->Enabled = true;
+	          N71->Caption = plik_search.Name;
+	    break;
+	    case 8:
+	          N81->Visible = true;
+	          N81->Enabled = true;
+	          N81->Caption = plik_search.Name;
+	    break;
+	    case 9:
+	          N91->Visible = true;
+	          N91->Enabled = true;
+	          N91->Caption = plik_search.Name;
+	    break;
+	    case 10:
+	         N101->Visible = true;
+	         N101->Enabled = true;
+	         N101->Caption = plik_search.Name;
+	    break;
+	    case 11:
+	        N111->Visible = true;
+	         N111->Enabled = true;
+	         N111->Caption = plik_search.Name;
+	    break;
+	    case 12:
+	         N121->Visible = true;
+	         N121->Enabled = true;
+	         N121->Caption = plik_search.Name;
+	    break;
+	   }
+	}
+}
+//---------------------------------------------------------------------------
+
+ __fastcall TMainForm::TMainForm(TComponent* Owner)
+    : TForm(Owner),gram(false),stop(false),pauza(false),hInst((HINSTANCE)HInstance)
+{
 for (int i = 0; i < 8; i++)
     bitmap[i] = new Graphics::TBitmap;
 }
@@ -81,7 +152,7 @@ switch (key)
     case 71:
          if (plik_current.Index==0 || Start->Enabled==false)
              return;
-         GrajFunk();
+         Graj();
     break;
     case 80:
          if (Pauza->Enabled==false)
@@ -306,7 +377,7 @@ MainForm->Repaint();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMainForm::GrajFunk(void)
+void __fastcall TMainForm::Graj(void)
 {
 if (gram==true)
     return;
@@ -624,7 +695,7 @@ pauza = false;
 
 void __fastcall TMainForm::AboutClick(TObject *Sender)
 {
-AboutForm->ShowModal();
+About_form->ShowModal();
 }
 //---------------------------------------------------------------------------
 
@@ -744,7 +815,7 @@ Load(plik[12].Name);
 
 void __fastcall TMainForm::StartClick(TObject *Sender)
 {
-if (plik_current.Index!=0 && mapa!=0) GrajFunk();
+if (plik_current.Index!=0 && mapa!=0) Graj();
 }
 //---------------------------------------------------------------------------
 
@@ -772,78 +843,16 @@ bitmap[BM_CANVAS]->LoadFromResourceName((int)hInst,"LOGO");
   bitmap[BM_MAPA]->LoadFromFile("mapa.bmp");
 
 setmem(&level,sizeof(level),0x00);
-
-for (plik_search_ret = FindFirst("*.lev",faAnyFile,plik_search), plik_current.Index = 0; !plik_search_ret && plik_current.Index < 12; plik_search_ret = FindNext(plik_search))
-    {
-     ++plik_current.Index;
-     plik[plik_current.Index].Name = plik_search.Name;
-
-     switch (plik_current.Index)
-    	{
-	    case 1:
-	          N11->Visible = true;
-	          N11->Enabled = true;
-	          N11->Caption = plik_search.Name;
-	    break;
-	    case 2:
-	          N21->Visible = true;
-	          N21->Enabled = true;
-	          N21->Caption = plik_search.Name;
-	    break;
-	    case 3:
-	          N31->Visible = true;
-	          N31->Enabled = true;
-	          N31->Caption = plik_search.Name;
-	    break;
-	    case 4:
-	          N41->Visible = true;
-	          N41->Enabled = true;
-	          N41->Caption = plik_search.Name;
-	    break;
-	    case 5:
-	          N51->Visible = true;
-	          N51->Enabled = true;
-	          N51->Caption = plik_search.Name;
-	    break;
-	    case 6:
-	          N61->Visible = true;
-	          N61->Enabled = true;
-	          N61->Caption = plik_search.Name;
-	    break;
-	    case 7:
-	          N71->Visible = true;
-	          N71->Enabled = true;
-	          N71->Caption = plik_search.Name;
-	    break;
-	    case 8:
-	          N81->Visible = true;
-	          N81->Enabled = true;
-	          N81->Caption = plik_search.Name;
-	    break;
-	    case 9:
-	          N91->Visible = true;
-	          N91->Enabled = true;
-	          N91->Caption = plik_search.Name;
-	    break;
-	    case 10:
-	         N101->Visible = true;
-	         N101->Enabled = true;
-	         N101->Caption = plik_search.Name;
-	    break;
-	    case 11:
-	        N111->Visible = true;
-	         N111->Enabled = true;
-	         N111->Caption = plik_search.Name;
-	    break;
-	    case 12:
-	         N121->Visible = true;
-	         N121->Enabled = true;
-	         N121->Caption = plik_search.Name;
-	    break;
-	   }
-	}
+Levele();
 MainForm->Repaint();
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TMainForm::Mapka2Click(TObject *Sender)
+{
+Form1->ShowModal();
+}
+//---------------------------------------------------------------------------
+
 
 

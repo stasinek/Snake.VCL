@@ -1,26 +1,32 @@
 [Closed Files]
-File_0=SourceModule,'C:\Documents and Settings\stasiek.TC12\My Documents\My Projects\prc++\OBSOLETE\PROGS\TEACPS\Unit2.cpp',0,1,1,1,1,1,0
-File_1=SourceModule,'C:\Documents and Settings\stasiek.TC12\My Documents\My Projects\prc++\OBSOLETE\PROGS\TEACPS\Unit1.cpp',0,1,119,45,136,1,0
-File_2=SourceModule,'C:\Documents and Settings\stasiek.TC12\My Documents\My Projects\prc++\OBSOLETE\PROGS\TEACPS\Unit3.cpp',0,1,1,1,1,1,0
-File_3=SourceModule,'c:\program files\borland\cbuilder6\include\stl\_function.h',0,1,164,41,399,0,0
-File_4=SourceModule,'D:\My Projects\aktualne prc++\OBSOLETE_BCB\Panel\Tips_frm.cpp',0,1,61,1,1,1,0
-File_5=SourceModule,'E:\GIT\basic\basic.h',0,1,271,40,282,0,0
-File_6=SourceModule,'E:\GIT\basic\basic.c',0,1,1,35,7,0,0
-File_7=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\hash\tsoft_hash_API.h',0,1,1,1,1,0,0
-File_8=SourceModule,'D:\My Projects\aktualne prc++\x86_libraries\SSTSOFT\compression\tsoft_compression_ari.h',0,1,1,1,1,0,0
-File_9=SourceModule,'c:\program files\borland\cbuilder6\include\winerror.h',0,1,6084,48,6100,0,0
+File_0=SourceModule,'C:\SRC\OBSOLETE\PACKAGES\SYSTRAY.CPP',0,1,32,54,34,0,0
+File_1=SourceModule,'C:\SRC\OBSOLETE\PACKAGES\EXEINFO.CPP',0,1,1,27,4,0,0
+File_2=SourceModule,'C:\SRC\OBSOLETE\PACKAGES\EXERES.CPP',0,1,1,1,28,0,0
+File_3=SourceModule,'C:\SRC\OBSOLETE\PACKAGES\FRAMEPAN.CPP',0,1,1,1,1,0,0
+File_4=SourceModule,'C:\SRC\OBSOLETE\PACKAGES\HINTBOX.CPP',0,1,1,64,184,0,0
+File_5=SourceModule,'C:\SRC\OBSOLETE\PACKAGES\ADVBAR.CPP',0,1,1,80,27,0,0
+File_6=SourceModule,'C:\SRC\OBSOLETE\PACKAGES\BARGRAPH.CPP',0,1,1,46,7,0,0
+File_7=SourceModule,'C:\SRC\OBSOLETE\PACKAGES\BROWSEDLG.cpp',0,1,1,80,27,0,0
+File_8=SourceModule,'C:\SRC\OBSOLETE\PACKAGES\EXEDLG.CPP',0,1,1,65,11,0,0
+File_9=SourceModule,'C:\SRC\OBSOLETE\PROGS\Panel.VCL\Atab_frm.cpp',0,1,139,17,156,0,0
 
 [Modules]
 Module0=C:\SRC\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp
-Count=1
+Module1=C:\SRC\OBSOLETE\PROGS\Koperek.VCL\Kop32_common.h
+Count=2
 EditWindowCount=1
 
 [C:\SRC\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp]
 ModuleType=SourceModule
 FormState=1
-FormOnTop=1
+FormOnTop=0
 
-[C:\Program Files\Borland\CBuilder5\Projects\ProjectGroup1.bpg]
+[C:\SRC\OBSOLETE\PROGS\Koperek.VCL\Kop32_common.h]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[C:\SRC\ProjectGroup1.bpg]
 FormState=0
 FormOnTop=0
 
@@ -29,28 +35,38 @@ FormState=0
 FormOnTop=0
 
 [EditWindow0]
-ViewCount=1
-CurrentView=0
+ViewCount=2
+CurrentView=1
 View0=0
+View1=1
 MessageView=MessageView@EditWindow0
 Create=1
 Visible=1
-State=0
-Left=405
-Top=126
-Width=870
-Height=502
-MaxLeft=-1
-MaxTop=-1
-ClientWidth=862
-ClientHeight=475
+State=2
+Left=445
+Top=233
+Width=659
+Height=482
+MaxLeft=-4
+MaxTop=97
+MaxWidth=1288
+MaxHeight=679
+ClientWidth=1280
+ClientHeight=652
 LeftPanelSize=0
 RightPanelSize=0
-BottomPanelSize=0
+BottomPanelSize=52
 BottomPanelClients=MessageView@EditWindow0
-BottomPanelData=00000400010000000B0000004D657373616765566965770000000000000000000000000000000000FFFFFFFF
+BottomPanelData=000004000000000000000000000000000000000000000000000100000000000000000B0000004D65737361676556696577FFFFFFFF
 
 [View0]
+Module=C:\SRC\OBSOLETE\PROGS\Koperek.VCL\Kop32_common.h
+CursorX=1
+CursorY=1
+TopLine=1
+LeftCol=1
+
+[View1]
 Module=C:\SRC\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp
 CursorX=1
 CursorY=1
@@ -58,8 +74,7 @@ TopLine=1
 LeftCol=1
 
 [Watches]
-Count=1
-Watch0='lpDestination',8,0,18,1,1
+Count=0
 
 [Breakpoints]
 Count=0
@@ -71,9 +86,9 @@ Count=0
 Create=1
 Visible=1
 State=2
-Left=9
-Top=15
-Width=1271
+Left=0
+Top=0
+Width=1024
 Height=105
 MaxLeft=-4
 MaxTop=-4
@@ -84,10 +99,10 @@ ClientHeight=78
 
 [ProjectManager]
 Create=1
-Visible=0
+Visible=1
 State=0
-Left=369
-Top=372
+Left=60
+Top=233
 Width=438
 Height=303
 MaxLeft=-1
@@ -117,7 +132,7 @@ FlagPane=64
 
 [AlignmentPalette]
 Create=1
-Visible=0
+Visible=1
 State=0
 Left=200
 Top=107
@@ -130,10 +145,10 @@ ClientHeight=60
 
 [PropertyInspector]
 Create=1
-Visible=0
+Visible=1
 State=0
-Left=0
-Top=359
+Left=29
+Top=271
 Width=190
 Height=381
 MaxLeft=-1
@@ -146,21 +161,37 @@ Dockable=1
 SplitPos=85
 ArrangeBy=Name
 SelectedItem=Caption
-ExpandedItems=
-HiddenCategories=
+ExpandedItems=Anchors,Constraints,Font,Font.Style
+HiddenCategories=Legacy
 ShowStatusBar=1
 
-[MessageView@EditWindow0]
+[CallStackWindow]
 Create=1
 Visible=0
 State=0
-Left=-211
-Top=-499
-Width=443
+Left=493
+Top=319
+Width=294
+Height=161
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=286
+ClientHeight=137
+TBDockHeight=161
+LRDockWidth=294
+Dockable=1
+
+[MessageView@EditWindow0]
+Create=1
+Visible=1
+State=0
+Left=12
+Top=0
+Width=1268
 Height=52
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=443
+ClientWidth=1268
 ClientHeight=52
 TBDockHeight=52
 LRDockWidth=443
