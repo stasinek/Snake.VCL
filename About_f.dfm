@@ -3,8 +3,8 @@ object AboutBox: TAboutBox
   Top = 360
   BorderStyle = bsDialog
   Caption = 'O programiku...'
-  ClientHeight = 359
-  ClientWidth = 565
+  ClientHeight = 356
+  ClientWidth = 522
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,16 +16,16 @@ object AboutBox: TAboutBox
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
-    Left = 4
-    Top = 4
-    Width = 441
-    Height = 129
+    Left = 5
+    Top = 8
+    Width = 413
+    Height = 133
     BevelInner = bvRaised
     BevelOuter = bvLowered
     ParentColor = True
     TabOrder = 0
     object ProgramIcon: TImage
-      Left = 400
+      Left = 220
       Top = 12
       Width = 32
       Height = 32
@@ -64,20 +64,19 @@ object AboutBox: TAboutBox
         0000000000900000000000000090000999999000009999999990000000000009
         09999000000000099999900000000000000000000000000000000000FFFF0000
         800300008003000080030000FFE300008003000080030000800300008FFF0000
-        8C030000800300008003000080030000FC030000FC030000FFFF0000
-      }
+        8C030000800300008003000080030000FC030000FC030000FFFF0000}
       Stretch = True
       IsControl = True
     end
     object ProductName: TLabel
-      Left = 220
+      Left = 265
       Top = 12
-      Width = 160
-      Height = 16
-      Caption = 'sstsoft->Waz 1.001 (R) '
+      Width = 128
+      Height = 25
+      Caption = 'Snake v1.00'
       Font.Charset = EASTEUROPE_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -21
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
@@ -85,11 +84,10 @@ object AboutBox: TAboutBox
     end
     object Copyright: TLabel
       Left = 220
-      Top = 56
-      Width = 165
+      Top = 58
+      Width = 122
       Height = 13
-      Alignment = taCenter
-      Caption = 'Stanislaw Stasiak - sstsoft @ 2001'
+      Caption = 'Stanislaw Stasiak @ 2001'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -11
@@ -99,24 +97,11 @@ object AboutBox: TAboutBox
       IsControl = True
     end
     object Label1: TLabel
-      Left = 224
-      Top = 84
-      Width = 203
+      Left = 16
+      Top = 107
+      Width = 360
       Height = 13
-      Caption = 'Enter - start , Esc - stop , P - pauza'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clNavy
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label2: TLabel
-      Left = 294
-      Top = 104
-      Width = 135
-      Height = 13
-      Caption = 'O - opcje G - rozpocznij'
+      Caption = 'Enter - START , Esc - STOP , SPACJA - PAUZA, O - OPCJE, G - GRAJ'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -11
@@ -125,10 +110,10 @@ object AboutBox: TAboutBox
       ParentFont = False
     end
     object Image1: TImage
-      Left = 12
+      Left = 16
       Top = 8
-      Width = 201
-      Height = 81
+      Width = 189
+      Height = 61
       Picture.Data = {
         07544269746D6170FA8C0000424DFA8C0000000000003600000028000000BE00
         00003F0000000100180000000000C48C0000120B0000120B0000000000000000
@@ -1258,15 +1243,30 @@ object AboutBox: TAboutBox
         8080808080808080808080808080808080808080808080808080808080808080
         8080808080808080808080808080808080808080808080808080808080808080
         8080808080808080808080808080808080808080808080808080808080808080
-        808080800000
-      }
+        808080800000}
+    end
+    object Label2: TLabel
+      Left = 16
+      Top = 82
+      Width = 369
+      Height = 13
+      Caption = 
+        'Website, sourcecode (click to open) - https://github.com/stasine' +
+        'k/Snake.VCL'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      IsControl = True
     end
   end
   object OKButton: TButton
-    Left = 452
-    Top = 4
-    Width = 105
-    Height = 129
+    Left = 424
+    Top = 8
+    Width = 93
+    Height = 133
     Caption = 'OK'
     Default = True
     ModalResult = 1
@@ -1274,17 +1274,133 @@ object AboutBox: TAboutBox
   end
   object Memo1: TMemo
     Left = 4
-    Top = 140
-    Width = 553
-    Height = 213
+    Top = 147
+    Width = 513
+    Height = 204
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
     Lines.Strings = (
-      'Memo1'
-    )
+      '#Before build grab dclusr50.VCL visual components '
+      ''
+      
+        'Link and manual is here: https://github.com/stasinek/dclusr50.VC' +
+        'L'
+      ''
+      '#User Manual (Polish)'
+      ''
+      'Jak grac::'
+      ''
+      
+        'Wybierz z menu Graj->Mapka->i nazwa pliku mapy, nastepnie z menu' +
+        ' Graj->Start lub nacisnij "G"'
+      ''
+      'NEW!!!'
+      'Klawisze::'
+      ''
+      '"G" - zacznij gre'
+      '"P" - pauza'
+      '"Esc" - stop'
+      '"O" - opcje'
+      '"E" - EXIT'
+      '"F1"..."F12" zmien mape'
+      ''
+      'Konfiguracja ::'
+      ''
+      'NEW!!!'
+      
+        'Pliki *.lev mozna dowolnie tworzyc i nadawac dowolne nazwy, maxy' +
+        'malnie moze byc ich 12 zmieniane '
+      'F1-F12 lub w menu'
+      ''
+      
+        'W pliku *.lev znajduje sie textowy obraz i ulozenie scian "1" oz' +
+        'nacza ze tu jest przeszkoda'
+      'a cokolwiek innego np.0 oznacza pusta przestrzen'
+      
+        'w pliku konfiguracji przed mapa nalezy umiescic linijke "end!" b' +
+        'ez niej program sie zebzdzi'
+      
+        'Elementy grafiki sa w plikach map.bmp(kafle sienne) ,nic.bmp(kaf' +
+        'le tlane)'
+      
+        'kropa.bmp(pierscienie weza) ,zbier.bmp(kafle zbierajek;wydl_'#243'zaj' +
+        'ek)'
+      'kropao.bmp(glowa weza), bonus.bmp, clock.bmp'
+      'Pozwala to na zmiane INTERFACE'#39'u bez ponownej kompilacji!'
+      ''
+      ''
+      'Info:::'
+      ''
+      'Pliki programu:'
+      '*.bmp'
+      '*.wav'
+      '*.txt'
+      'waz.exe'
+      ''
+      'LICENCJA: MIT'
+      ''
+      
+        '/***************************************************************' +
+        '**************'
+      'COPYRIGHT (c) 2002-2018 Stanislaw Stasiak http://SSTSOFT.pl'
+      'All rights reserved.'
+      ''
+      
+        'Redistribution and use in source and binary forms, with or witho' +
+        'ut'
+      
+        'modification, are permitted provided that the following conditio' +
+        'ns are met:'
+      ''
+      
+        '* Redistributions of source code must retain the above copyright' +
+        ' notice, this'
+      '  list of conditions and the following disclaimer.'
+      ''
+      
+        '* Redistributions in binary form must reproduce the above copyri' +
+        'ght notice,'
+      
+        '  this list of conditions and the following disclaimer in the do' +
+        'cumentation'
+      '  and/or other materials provided with the distribution.'
+      ''
+      
+        'THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUT' +
+        'ORS "AS IS"'
+      
+        'AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITE' +
+        'D TO, THE'
+      
+        'IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICUL' +
+        'AR PURPOSE ARE'
+      
+        'DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTO' +
+        'RS BE LIABLE'
+      
+        'FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CON' +
+        'SEQUENTIAL'
+      
+        'DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUT' +
+        'E GOODS OR'
+      
+        'SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTIO' +
+        'N) HOWEVER'
+      
+        'CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRI' +
+        'CT LIABILITY,'
+      
+        'OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY O' +
+        'UT OF THE USE'
+      
+        'OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAM' +
+        'AGE.'
+      
+        '****************************************************************' +
+        '*************/')
     ParentFont = False
     TabOrder = 2
   end

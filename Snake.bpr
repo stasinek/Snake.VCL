@@ -2,18 +2,18 @@
 <!-- C++Builder XML Project -->
 <PROJECT>
   <MACROS>
-    <VERSION value="BCB.05.00"/>
+    <VERSION value="BCB.05.03"/>
     <PROJECT value="Snake.exe"/>
     <OBJFILES value="Waz.obj Waz_form.obj Opc.obj ..\..\FORM_TEMPLATES\About_frm.obj Unit1.obj"/>
-    <RESFILES value="Waz.res"/>
+    <RESFILES value="Snake.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
     <DEFFILE value=""/>
     <RESDEPEN value="$(RESFILES) Waz_form.dfm Opc.dfm ..\..\FORM_TEMPLATES\About_frm.dfm 
       Unit1.dfm"/>
     <LIBFILES value=""/>
-    <LIBRARIES value="VCLX50.lib bcbsmp50.lib Vcl50.lib dclusr50.lib vcl.lib"/>
-    <SPARELIBS value="vcl.lib dclusr50.lib Vcl50.lib bcbsmp50.lib VCLX50.lib"/>
+    <LIBRARIES value="sstdcl50.lib VCLX50.lib bcbsmp50.lib Vcl50.lib vcl.lib"/>
+    <SPARELIBS value="vcl.lib Vcl50.lib bcbsmp50.lib VCLX50.lib sstdcl50.lib"/>
     <PACKAGES value="db.bpi vcldb.bpi bde.bpi vcldbx.bpi"/>
     <PATHCPP value=".;..\..\FORM_TEMPLATES"/>
     <PATHPAS value=".;"/>
@@ -25,14 +25,14 @@
     <USERDEFINES value="_DEBUG"/>
     <SYSDEFINES value="NO_STRICT"/>
     <MAINSOURCE value="Waz.cpp"/>
-    <INCLUDEPATH value="..\..\FORM_TEMPLATES;..\..;..;$(BCB)\include;$(BCB)\include\vcl;..\..\PACKAGES"/>
-    <LIBPATH value="..\..\FORM_TEMPLATES;..\..;..;$(BCB)\lib\obj;$(BCB)\lib;..\..\PACKAGES"/>
+    <INCLUDEPATH value="..\..\FORM_TEMPLATES;..\..\PACKAGES;$(BCB)\include;$(BCB)\include\Vcl"/>
+    <LIBPATH value="..\..\FORM_TEMPLATES;$(BCB)\lib\obj;$(BCB)\lib;..\..\PACKAGES"/>
     <WARNINGS value="-w-par -w-8027 -w-8026"/>
     <WARNOPTSTR value=""/>
   </MACROS>
   <OPTIONS>
-    <CFLAG1 value="-O2 -H=c:\PROGRA~1\borland\CBUILD~1\lib\vcld.csm -Hc -Vx -Ve -xf -xp -Vmp 
-      -VF -C -fp -ff -X- -ps -a8 -b- -k -y -v -vi- -c -tWM"/>
+    <CFLAG1 value="-O2 -Vx -Ve -xf -xp -Vmp -VF -C -fp -ff -X- -ps -a8 -b- -k -y -v -vi- -c 
+      -tWM"/>
     <CFLAG2 value=""/>
     <CFLAG3 value=""/>
     <PFLAGS value="-$YD -$W -$U -$R -$Q -$A8 -v -JPHNV -M -JPHNE"/>
@@ -79,30 +79,35 @@ $(BCB)\Bin\dclocx50.bpl=Borland Sample Imported ActiveX Controls
 $(BCB)\Bin\bcb2kaxserver50.bpl=Borland C++Builder COM Server Components Sample Package
 
 [HistoryLists\hlIncludePath]
-Count=10
-Item0=..\..\FORM_TEMPLATES;..\..;..;$(BCB)\include;$(BCB)\include\vcl;..\..\PACKAGES
-Item1=..\..\FORM_TEMPLATES;..\..;..\;$(BCB)\include;$(BCB)\include\vcl;..\..\PACKAGES
-Item2=$(BCB)\include;$(BCB)\include\vcl;..\..\PACKAGES
-Item3=$(BCB)\include;$(BCB)\include\vcl;.\..\..\PACKAGES
-Item4=$(BCB)\include;$(BCB)\include\vcl;\..\..\PACKAGES
-Item5=$(BCB)\include;$(BCB)\include\vcl;\..\..\OBSOLETE_BCB\PACKAGES
-Item6=$(BCB)\include;$(BCB)\include\vcl;D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PACKAGES
-Item7=$(BCB)\include;$(BCB)\include\vcl;C:\Moje dokumenty\PRC\BCB3\Packages
-Item8=$(BCB)\include;$(BCB)\include\vcl
-Item9=..\autosrv;$(BCB)\include;$(BCB)\include\vcl
+Count=13
+Item0=..\..\FORM_TEMPLATES;..\..\PACKAGES;$(BCB)\include;$(BCB)\include\Vcl
+Item1=..\..\FORM_TEMPLATES
+Item2=..\..\FORM_TEMPLATES;
+Item3=..\..\FORM_TEMPLATES;..\..;..;$(BCB)\include;$(BCB)\include\vcl;..\..\PACKAGES
+Item4=..\..\FORM_TEMPLATES;..\..;..\;$(BCB)\include;$(BCB)\include\vcl;..\..\PACKAGES
+Item5=$(BCB)\include;$(BCB)\include\vcl;..\..\PACKAGES
+Item6=$(BCB)\include;$(BCB)\include\vcl;.\..\..\PACKAGES
+Item7=$(BCB)\include;$(BCB)\include\vcl;\..\..\PACKAGES
+Item8=$(BCB)\include;$(BCB)\include\vcl;\..\..\OBSOLETE_BCB\PACKAGES
+Item9=$(BCB)\include;$(BCB)\include\vcl;D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PACKAGES
+Item10=$(BCB)\include;$(BCB)\include\vcl;C:\Moje dokumenty\PRC\BCB3\Packages
+Item11=$(BCB)\include;$(BCB)\include\vcl
+Item12=..\autosrv;$(BCB)\include;$(BCB)\include\vcl
 
 [HistoryLists\hlLibraryPath]
-Count=10
-Item0=..\..\FORM_TEMPLATES;..\..;..;$(BCB)\lib\obj;$(BCB)\lib;..\..\PACKAGES
-Item1=..\..\FORM_TEMPLATES;..\..;..\;$(BCB)\lib\obj;$(BCB)\lib;..\..\PACKAGES
-Item2=$(BCB)\lib\obj;$(BCB)\lib;..\..\PACKAGES
-Item3=$(BCB)\lib\obj;$(BCB)\lib;.\..\..\PACKAGES
-Item4=$(BCB)\lib\obj;$(BCB)\lib;\..\..\PACKAGES
-Item5=$(BCB)\lib\obj;$(BCB)\lib;\..\..\OBSOLETE_BCB\PACKAGES
-Item6=$(BCB)\lib\obj;$(BCB)\lib;D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PACKAGES
-Item7=$(BCB)\lib\obj;$(BCB)\lib;C:\Moje dokumenty\PRC\BCB3\Packages
-Item8=$(BCB)\lib\obj;$(BCB)\lib
-Item9=..\autosrv;$(BCB)\lib\obj;$(BCB)\lib
+Count=12
+Item0=$(BCB)\lib\obj;$(BCB)\lib;..\..\PACKAGES
+Item1=..\..\FORM_TEMPLATES
+Item2=..\..\FORM_TEMPLATES;
+Item3=..\..\FORM_TEMPLATES;..\..;..;$(BCB)\lib\obj;$(BCB)\lib;..\..\PACKAGES
+Item4=..\..\FORM_TEMPLATES;..\..;..\;$(BCB)\lib\obj;$(BCB)\lib;..\..\PACKAGES
+Item5=$(BCB)\lib\obj;$(BCB)\lib;.\..\..\PACKAGES
+Item6=$(BCB)\lib\obj;$(BCB)\lib;\..\..\PACKAGES
+Item7=$(BCB)\lib\obj;$(BCB)\lib;\..\..\OBSOLETE_BCB\PACKAGES
+Item8=$(BCB)\lib\obj;$(BCB)\lib;D:\My Projects\aktualne_prc++\OBSOLETE_BCB\PACKAGES
+Item9=$(BCB)\lib\obj;$(BCB)\lib;C:\Moje dokumenty\PRC\BCB3\Packages
+Item10=$(BCB)\lib\obj;$(BCB)\lib
+Item11=..\autosrv;$(BCB)\lib\obj;$(BCB)\lib
 
 [HistoryLists\hlConditionals]
 Count=2

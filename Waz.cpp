@@ -14,12 +14,12 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     try
     {
         Application->Initialize();
-        Application->Title = "SSTSOFT.Snake.VCL 1.001";
-		Application->CreateForm(__classid(TMainForm), &MainForm);
-         Application->CreateForm(__classid(TOpcjeForm), &OpcjeForm);
-         Application->CreateForm(__classid(TAbout_form), &About_form);
-         Application->CreateForm(__classid(TForm1), &Form1);
-         Application->Run();
+        Application->Title = "SSTSOFT.Snake.VCL 1.1";
+                 Application->CreateForm(__classid(TMainForm), &MainForm);
+                 Application->CreateForm(__classid(TOpcjeForm), &OpcjeForm);
+                 Application->CreateForm(__classid(TAbout_form), &About_form);
+                 Application->CreateForm(__classid(TForm1), &Form1);
+                 Application->Run();
     }
     catch (Exception &exception)
     {

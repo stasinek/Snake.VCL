@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2018-01-01 13:21:05.000.070,=K:\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>2018-01-01 13:21:05.000.023,=K:\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>2018-01-01 13:21:40.000.796,=K:\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>2018-01-01 13:21:40.000.773,=K:\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>2018-01-01 13:22:51.000.325,=K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Waz.cpp</Transaction>
-    <Transaction>2018-01-01 13:22:51.000.373,=K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp</Transaction>
-    <Transaction>2018-01-01 13:22:51.000.232,=K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\About_f.cpp</Transaction>
-    <Transaction>2018-01-01 13:22:51.000.294,=K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Opc.cpp</Transaction>
-    <Transaction>2018-01-01 13:32:06.000.485,K:\Embarcadero\Studio\Projects\Unit1.cpp=K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Unit1.cpp</Transaction>
-    <Transaction>2018-01-01 13:32:06.000.485,K:\Embarcadero\Studio\Projects\Unit1.dfm=K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Unit1.dfm</Transaction>
-    <Transaction>2018-01-01 13:32:06.000.485,K:\Embarcadero\Studio\Projects\Unit1.h=K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Unit1.h</Transaction>
-    <Transaction>2018-01-01 13:32:17.000.293,K:\Embarcadero\Studio\Projects\Project1PCH1.h=K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\SnakePCH1.h</Transaction>
-    <Transaction>2018-01-01 13:32:31.000.527,K:\Embarcadero\Studio\Projects\Project1.cbproj=K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Snake.PCH.cbproj</Transaction>
-    <Transaction>2020-04-13 16:32:24.000.295,H:\Drive\My Projects\OBSOLETE\PROGS\Snake.VCL\Unit1.cpp=</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.485,K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Unit1.dfm=K:\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.485,K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Unit1.cpp=K:\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.373,=K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Waz_form.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.070,=K:\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.773,=K:\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.023,=K:\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.796,=K:\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.232,=K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\About_f.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.325,=K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Waz.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.294,=K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Opc.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.527,K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Snake.PCH.cbproj=K:\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.295,H:\Drive\My Projects\OBSOLETE\PROGS\Snake.VCL\Unit1.cpp=</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.293,K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\SnakePCH1.h=K:\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.485,K:\My Projects\prc++\OBSOLETE\PROGS\Snake.VCL\Unit1.h=K:\Embarcadero\Studio\Projects\Unit1.h</Transaction>
   </Transactions>
 </BorlandProject>

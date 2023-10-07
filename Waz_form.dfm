@@ -1,12 +1,12 @@
 object MainForm: TMainForm
-  Left = 257
-  Top = 290
+  Left = 167
+  Top = 254
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'SNAKE 1.0'
-  ClientHeight = 84
+  ClientHeight = 86
   ClientWidth = 435
   Color = clBlack
   Constraints.MinHeight = 130
@@ -66,7 +66,7 @@ object MainForm: TMainForm
   TextHeight = 13
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 65
+    Top = 67
     Width = 435
     Height = 19
     Panels = <>
@@ -75,6 +75,14 @@ object MainForm: TMainForm
   object PopupMenu1: TPopupMenu
     Left = 44
     Top = 4
+    object About: TMenuItem
+      Caption = '&O programie...'
+      OnClick = AboutClick
+    end
+    object Opcje: TMenuItem
+      Caption = '&Opcje...'
+      OnClick = OpcjeClick
+    end
     object Gra: TMenuItem
       Caption = 'G&ra'
       object Start: TMenuItem
@@ -180,14 +188,6 @@ object MainForm: TMainForm
         OnClick = N121Click
       end
     end
-    object Opcje: TMenuItem
-      Caption = '&Opcje gry'
-      OnClick = OpcjeClick
-    end
-    object About: TMenuItem
-      Caption = '&O...'
-      OnClick = AboutClick
-    end
     object Zamknij: TMenuItem
       Caption = '&Koniec'
       OnClick = ZamknijClick
@@ -196,6 +196,14 @@ object MainForm: TMainForm
   object MainMenu1: TMainMenu
     Left = 112
     Top = 4
+    object About2: TMenuItem
+      Caption = '&O...'
+      OnClick = AboutClick
+    end
+    object Opcje2: TMenuItem
+      Caption = '&Opcje'
+      OnClick = OpcjeClick
+    end
     object Start2: TMenuItem
       Caption = 'Sta&rt'
       Enabled = False
@@ -218,16 +226,8 @@ object MainForm: TMainForm
       Caption = '&Mapa F1-F12'
       OnClick = Mapka2Click
     end
-    object Opcje2: TMenuItem
-      Caption = '&Opcje'
-      OnClick = OpcjeClick
-    end
     object N1: TMenuItem
       Caption = '|'
-    end
-    object About2: TMenuItem
-      Caption = '&O...'
-      OnClick = AboutClick
     end
     object Zamknij2: TMenuItem
       Caption = '&KONIEC'

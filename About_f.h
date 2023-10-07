@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------------
-#ifndef About_fH
-#define About_fH
+#ifndef About_f_H
+#define About_f_H
 //----------------------------------------------------------------------------
 #include <System.hpp>
 #include <Windows.hpp>
@@ -22,9 +22,9 @@ __published:
 	TLabel *Copyright;
 	TButton *OKButton;
     TLabel *Label1;
-    TLabel *Label2;
 	TImage *Image1;
         TMemo *Memo1;
+	TLabel *Label2;
 private:
 public:
 	virtual __fastcall TAboutBox(TComponent* AOwner);
