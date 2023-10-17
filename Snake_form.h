@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
-#ifndef Waz_formH
-#define Waz_formH
+#ifndef Snake_formH
+#define Snake_formH
 //---------------------------------------------------------------------------
 #include <Classes.hpp>
 #include <Controls.hpp>

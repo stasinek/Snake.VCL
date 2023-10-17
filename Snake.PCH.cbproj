@@ -173,16 +173,16 @@
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
-        <CppCompile Include="Waz.cpp">
+        <CppCompile Include="Snake.cpp">
             <BuildOrder>5</BuildOrder>
         </CppCompile>
-        <CppCompile Include="Waz_form.cpp">
+        <CppCompile Include="Snake_form.cpp">
             <Form>MainForm</Form>
             <FormType>dfm</FormType>
-            <DependentOn>Waz_form.h</DependentOn>
+            <DependentOn>Snake_form.h</DependentOn>
             <BuildOrder>6</BuildOrder>
         </CppCompile>
-        <FormResources Include="Waz_form.dfm"/>
+        <FormResources Include="Snake_form.dfm"/>
         <FormResources Include="About_f.dfm"/>
         <FormResources Include="Opc.dfm"/>
         <BuildConfiguration Include="Release">

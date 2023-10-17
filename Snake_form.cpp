@@ -2,7 +2,7 @@
 #include <vcl.h>
 #pragma hdrstop
 //---------------------------------------------------------------------------
-#include "Waz_form.h"
+#include "Snake_form.h"
 #include "Opc.h"
 #include "../../FORM_TEMPLATES/About_frm.h"
 #include "Unit1.h"

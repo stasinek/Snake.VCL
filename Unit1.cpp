@@ -4,7 +4,7 @@
 #pragma hdrstop
 
 #include "Unit1.h"
-#include "Waz_form.h"
+#include "Snake_form.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"

@@ -4,7 +4,7 @@
 #pragma hdrstop
 #include <tchar.h>
 //---------------------------------------------------------------------------
-USEFORM("Waz_form.cpp", MainForm);
+USEFORM("Snake_form.cpp", MainForm);
 USEFORM("About_f.cpp", AboutBox);
 USEFORM("Opc.cpp", OpcjeForm);
 //---------------------------------------------------------------------------
